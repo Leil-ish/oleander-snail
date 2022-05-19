@@ -733,7 +733,11 @@
 				color: #ddd;
 				color: rgba(255, 255, 255, 0.75);
 
-				h2, h3, h4, h5, h6 {
+				h2 {
+					color:rgba(128, 128, 128, 0.35)
+				}
+				
+				h3, h4, h5, h6 {
 					color: inherit;
 				}
 
