@@ -1,1 +1,0 @@
-Portfolio/Therapy website for Leila Anderson, LMFT-S. HTML/CSS.
