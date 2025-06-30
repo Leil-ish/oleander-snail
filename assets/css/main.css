@@ -180,12 +180,14 @@ input, select, textarea {
 
 	.container {
 		margin: 0 auto;
-		max-width: 100%;
-		width: 1400px;
+		max-width: 1200px; /* Adjusted: Sets a reasonable max-width for content */
+		width: 100%; /* Ensure it takes full width up to max-width */
+		padding: 0 4em; /* Added: Horizontal padding for spacing on wider screens */
 	}
 
 		.container.medium {
-			width: 1050px;
+			max-width: 1050px; /* Adjusted to match proportional reduction for medium */
+			width: 100%; /* Ensure it takes full width up to max-width */
 		}
 
 		@media screen and (max-width: 1680px) {
