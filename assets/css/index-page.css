@@ -1,6 +1,24 @@
 /* Page-specific styles for index.html */
 
-/* Styles for main content sections within the article */
+/* Styles for the banner section */
+#banner .inner {
+    max-width: 1200px; /* Limit the width of the banner's content */
+    margin-left: auto;  /* Center the banner's content */
+    margin-right: auto; /* Center the banner's content */
+    padding: 4em; /* Adjust padding as needed, or keep original if it was working */
+    /* You may need to add or adjust height/min-height for #banner itself in main.css
+       if it's not appearing correctly. This targets the inner content. */
+}
+
+/* Adjust padding for smaller screens */
+@media screen and (max-width: 736px) {
+    #banner .inner {
+        padding: 2em 1.5em; /* Adjust vertical and horizontal padding for small screens */
+    }
+}
+
+
+/* Styles for main content sections within the article (your original rules) */
 #main .wrapper {
     max-width: 1200px; /* Limit width of wrappers */
     margin-left: auto; /* Center the wrapper */
@@ -22,12 +40,10 @@
 #main .wrapper.style2 {
     /* Add any specific styles for this section here */
 }
-
 /* Example: Targeting the 'Two' section specifically if needed */
 #main .wrapper.style1 {
     /* Add any specific styles for this section here */
 }
-
 /* Example: Targeting the 'Three' section specifically if needed */
 #main .wrapper.style3 {
     /* Add any specific styles for this section here */
