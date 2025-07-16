@@ -1674,3 +1674,34 @@ input, select, textarea {
 		body.is-preload #footer {
 			opacity: 0;
 		}
+/* --- Styling for the logo image (favicon.ico or PNG) --- */
+
+#header .logo {
+    /* These properties are crucial for creating the circular container */
+    width: 5rem !important;        /* Adjust this to the desired size of your circle */
+    height: 5rem !important;       /* Should match width for a perfect circle */
+    border-radius: 50% !important; /* Makes the container circular */
+    overflow: hidden !important;   /* Hides any part of the image that goes outside the circle */
+    display: flex !important;      /* Use flexbox to center content */
+    align-items: center !important; /* Vertically center the image */
+    justify-content: center !important; /* Horizontally center the image */
+    position: relative !important; /* Ensure z-index works */
+    z-index: 1000 !important;      /* Bring the entire logo container to the very front */
+
+    /* You might have existing border or background styles on .logo.
+       Keep or adjust them as needed. Example: */
+    /* border: 1px solid rgba(255, 255, 255, 0.5) !important; */
+    /* background-color: rgba(0, 0, 0, 0.2) !important; */
+}
+
+#header .logo .logo-img {
+    display: block !important;
+    /* Size the image to perfectly fill the circular container without distortion */
+    width: 90% !important;    /* Make image fill 100% of the logo container's width */
+    height: 90% !important;   /* Make image fill 100% of the logo container's height */
+    object-fit: cover !important; /* CRITICAL: Scales the image to cover the area, cropping if necessary */
+                                  /* Use 'contain' if you want the whole image visible, even if it leaves gaps */
+    border-radius: 50% !important; /* Apply border-radius to the image itself for good measure */
+    position: relative !important;
+    z-index: 1001 !important; /* Bring the image itself to the very front */
+}
