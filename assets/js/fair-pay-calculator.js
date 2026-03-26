@@ -53,7 +53,7 @@
     '    </div>',
     '    <div class="fpc-section">',
     '      <h4>Benchmark settings</h4>',
-    '      <p class="fpc-note">For fully licensed clinicians, this tool uses a 50/50 post-overhead benchmark. For associates, the benchmark defaults to 80% of the fully licensed benchmark, but you can adjust that.</p>',
+    '      <p class="fpc-note">For fully licensed clinicians, this tool uses a 50/50 post-overhead benchmark. For associates, it uses 80% of the fully licensed benchmark.</p>',
     '      <div class="fpc-grid two">',
     '        <div class="fpc-field">',
     '          <label for="fpc-clinician-type">Clinician type</label>',
@@ -61,11 +61,6 @@
     '            <option value="fullyLicensed">Fully licensed</option>',
     '            <option value="associate">Associate</option>',
     '          </select>',
-    '        </div>',
-    '        <div class="fpc-field">',
-    '          <label for="fpc-associate-multiplier">Associate benchmark multiplier</label>',
-    '          <input id="fpc-associate-multiplier" name="associateMultiplier" type="number" min="0" step="0.05" value="0.80" />',
-    '          <small>Default assumes associates should earn about 80% of the benchmark used for fully licensed clinicians, recognizing supervision level and reduced independent market value.</small>',
     '        </div>',
     '      </div>',
     '    </div>',
@@ -160,7 +155,6 @@
     flatRate: 40,
     splitPercent: 50,
     clinicianType: "fullyLicensed",
-    associateMultiplier: 0.8,
     rent: 1000,
     ehr: 70,
     liability: 20,
@@ -299,7 +293,6 @@
     document.getElementById("fpc-weeks").value = defaults.weeksPerMonth;
     document.getElementById("fpc-paytype").value = defaults.payType;
     document.getElementById("fpc-clinician-type").value = defaults.clinicianType;
-    document.getElementById("fpc-associate-multiplier").value = defaults.associateMultiplier.toFixed(2);
     document.getElementById("fpc-rent").value = defaults.rent;
     document.getElementById("fpc-ehr").value = defaults.ehr;
     document.getElementById("fpc-liability").value = defaults.liability;
@@ -324,8 +317,6 @@
     var weeksPerMonth = Math.max(getNumber("fpc-weeks"), 0);
     var payType = document.getElementById("fpc-paytype").value;
     var clinicianType = document.getElementById("fpc-clinician-type").value;
-    var associateMultiplier = Math.max(getNumber("fpc-associate-multiplier"), 0);
-
     var benefitsDefaultValue = getNumber("fpc-benefits-default");
     var benefitsValue = getNumber("fpc-benefits");
     if (benefitsValue === 0 && benefitsDefaultValue > 0) {
@@ -373,7 +364,7 @@
       : 0;
 
     var fullyLicensedTargetNetShare = 50;
-    var associateTargetNetShare = fullyLicensedTargetNetShare * associateMultiplier;
+    var associateTargetNetShare = fullyLicensedTargetNetShare * associateTargetMultiplier;
     var benchmarkTargetNetShare = clinicianType === "associate"
       ? associateTargetNetShare
       : fullyLicensedTargetNetShare;
@@ -401,7 +392,7 @@
       : 0;
 
     var benchmarkContext = clinicianType === "associate"
-      ? "Associate benchmark uses " + percent(associateMultiplier * 100) + " of the fully licensed target."
+      ? "Associate benchmark uses " + percent(associateTargetMultiplier * 100) + " of the fully licensed target."
       : "Fully licensed benchmark uses a 50/50 split of post-overhead margin.";
 
     document.getElementById("fpc-results").innerHTML = [
@@ -489,3 +480,4 @@
   document.getElementById("fpc-recalculate").addEventListener("click", calculate);
   document.getElementById("fpc-reset").addEventListener("click", resetDefaults);
 })();
+  var associateTargetMultiplier = 0.8;
