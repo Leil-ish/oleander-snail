@@ -29,6 +29,10 @@
     '          <small>Percent of scheduled sessions that do not complete.</small>',
     '        </div>',
     '      </div>',
+    '      <label class="fpc-toggle" for="fpc-texas-rate">',
+    '        <input id="fpc-texas-rate" name="useTexasRate" type="checkbox" />',
+    '        <span>Use approximate insurance reimbursements (normed for Texas) and estimate <strong>$100</strong> for a <code>90837</code> session.</span>',
+    '      </label>',
     '    </div>',
     '    <div class="fpc-section">',
     '      <h4>Caseload and pay</h4>',
@@ -104,7 +108,12 @@
     '        <div class="fpc-field">',
     '          <label for="fpc-benefits">Monthly value of benefits</label>',
           '          <input id="fpc-benefits" name="benefits" type="number" min="0" step="1" value="0" />',
-    '          <small>Optional. You can use an estimate for health insurance, PTO, stipend value, or employer tax burden.</small>',
+    '          <small>Optional. You can use an estimate for health insurance, stipend value, or employer tax burden.</small>',
+    '        </div>',
+    '        <div class="fpc-field">',
+    '          <label for="fpc-pto">Monthly PTO benefit value</label>',
+    '          <input id="fpc-pto" name="ptoBenefit" type="number" min="0" step="1" value="0" />',
+    '          <small>Optional. Use this if paid time off is part of the support package and you want it counted separately.</small>',
     '        </div>',
     '        <div class="fpc-field">',
     '          <label for="fpc-payroll">Monthly payroll costs</label>',
@@ -149,6 +158,7 @@
     rate: 100,
     collectionRate: 95,
     noShowRate: 10,
+    useTexasRate: false,
     sessionsPerWeek: 22,
     weeksPerMonth: 4.3,
     payType: "flat",
@@ -163,6 +173,7 @@
     marketing: 100,
     other: 0,
     benefits: 0,
+    ptoBenefit: 0,
     payroll: 120,
     cardFeePerSession: 3,
     billerFeeRate: 5,
@@ -289,6 +300,7 @@
     document.getElementById("fpc-rate").value = defaults.rate;
     document.getElementById("fpc-collection").value = defaults.collectionRate;
     document.getElementById("fpc-noshow").value = defaults.noShowRate;
+    document.getElementById("fpc-texas-rate").checked = defaults.useTexasRate;
     document.getElementById("fpc-sessions").value = defaults.sessionsPerWeek;
     document.getElementById("fpc-weeks").value = defaults.weeksPerMonth;
     document.getElementById("fpc-paytype").value = defaults.payType;
@@ -301,6 +313,7 @@
     document.getElementById("fpc-marketing").value = defaults.marketing;
     document.getElementById("fpc-other").value = defaults.other;
     document.getElementById("fpc-benefits").value = defaults.benefits;
+    document.getElementById("fpc-pto").value = defaults.ptoBenefit;
     document.getElementById("fpc-payroll").value = defaults.payroll;
     document.getElementById("fpc-card-fee").value = defaults.cardFeePerSession;
     document.getElementById("fpc-biller-rate").value = defaults.billerFeeRate;
@@ -311,24 +324,27 @@
 
   function calculate() {
     var listedRate = getNumber("fpc-rate");
+    var useTexasRate = document.getElementById("fpc-texas-rate").checked;
     var collectionRate = clamp(getNumber("fpc-collection"), 0, 100) / 100;
     var noShowRate = clamp(getNumber("fpc-noshow"), 0, 100) / 100;
     var sessionsPerWeek = Math.max(getNumber("fpc-sessions"), 0);
     var weeksPerMonth = Math.max(getNumber("fpc-weeks"), 0);
     var payType = document.getElementById("fpc-paytype").value;
     var clinicianType = document.getElementById("fpc-clinician-type").value;
+    var effectiveListedRate = useTexasRate ? 100 : listedRate;
     var benefitsDefaultValue = getNumber("fpc-benefits-default");
     var benefitsValue = getNumber("fpc-benefits");
     if (benefitsValue === 0 && benefitsDefaultValue > 0) {
       benefitsValue = benefitsDefaultValue;
     }
 
+    var ptoBenefitValue = getNumber("fpc-pto");
     var payrollValue = getNumber("fpc-payroll");
     var cardFeePerSession = getNumber("fpc-card-fee");
     var billerFeeRate = clamp(getNumber("fpc-biller-rate"), 0, 100) / 100;
 
     var completedSessions = sessionsPerWeek * weeksPerMonth * (1 - noShowRate);
-    var collectedRevenuePerCompletedSession = listedRate * collectionRate;
+    var collectedRevenuePerCompletedSession = effectiveListedRate * collectionRate;
     var monthlyRevenue = completedSessions * collectedRevenuePerCompletedSession;
     var monthlyBillerFees = monthlyRevenue * billerFeeRate;
     var monthlyCardFees = completedSessions * cardFeePerSession;
@@ -342,6 +358,7 @@
       getNumber("fpc-marketing") +
       getNumber("fpc-other") +
       benefitsValue +
+      ptoBenefitValue +
       payrollValue +
       monthlyBillerFees +
       monthlyCardFees;
@@ -447,6 +464,7 @@
       "  <tr><td>Estimated monthly revenue</td><td>" + currency(monthlyRevenue) + "</td></tr>",
       "  <tr><td>Estimated monthly overhead</td><td>" + currency(monthlyOverhead) + "</td></tr>",
       "  <tr><td>Benefits included monthly</td><td>" + currency(benefitsValue) + "</td></tr>",
+      "  <tr><td>PTO included monthly</td><td>" + currency(ptoBenefitValue) + "</td></tr>",
       "  <tr><td>Payroll included monthly</td><td>" + currency(payrollValue) + "</td></tr>",
       "  <tr><td>Card fees included monthly</td><td>" + currency(monthlyCardFees) + "</td></tr>",
       "  <tr><td>Biller fees included monthly</td><td>" + currency(monthlyBillerFees) + "</td></tr>",
