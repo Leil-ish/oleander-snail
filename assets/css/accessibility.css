@@ -1,0 +1,32 @@
+/* Sticky navigation */
+#header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+  background: rgba(42, 47, 52, 0.95);
+
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+#header nav {
+  margin-bottom: 2rem;
+}
+
+/* Landing page box padding */
+#header .content .inner {
+  padding: 4rem 3rem !important;
+}
+
+@media screen and (max-width: 980px) {
+  #header .content .inner {
+    padding: 3rem 2rem !important;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  #header .content .inner {
+    padding: 2.5rem 1.5rem !important;
+  }
+}

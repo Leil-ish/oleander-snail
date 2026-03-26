@@ -1,0 +1,351 @@
+.fair-pay-article {
+  width: min(72rem, calc(100vw - 3rem)) !important;
+  padding: 4.5rem 3rem 2.75rem 3rem !important;
+}
+
+.calculator-intro {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.fair-pay-shell {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.75rem;
+  align-items: start;
+  margin-top: 1.5rem;
+}
+
+.fair-pay-card {
+  border: solid 1px rgba(255, 255, 255, 0.18);
+  border-radius: 1rem;
+  background: rgba(25, 20, 34, 0.36);
+  box-shadow: 0 1.25rem 3rem rgba(8, 4, 12, 0.22);
+}
+
+.fair-pay-hero {
+  padding: 1.5rem;
+}
+
+.fair-pay-badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 0.35rem 0.8rem;
+  margin-bottom: 1rem;
+  background: rgba(242, 239, 232, 0.14);
+  color: #f8efe6;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.16rem;
+  text-transform: uppercase;
+}
+
+.fair-pay-hero h3 {
+  margin-bottom: 0.75rem;
+}
+
+.fair-pay-hero p {
+  margin-bottom: 1rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.fair-pay-points {
+  margin: 0;
+  padding-left: 1.2rem;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.fair-pay-points li + li {
+  margin-top: 0.55rem;
+}
+
+.fair-pay-calculator-root {
+  min-width: 0;
+}
+
+.fpc-wrap {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.fpc-panel {
+  padding: 1.65rem;
+}
+
+.fpc-panel h3,
+.fpc-panel h4 {
+  margin-bottom: 0.45rem;
+}
+
+.fpc-note,
+.fair-pay-disclaimer,
+.fpc-help,
+.fpc-table td:first-child {
+  color: rgba(255, 255, 255, 0.66);
+}
+
+.fpc-note {
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+.fpc-section + .fpc-section {
+  margin-top: 1rem;
+}
+
+.fpc-advanced summary {
+  cursor: pointer;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08rem;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.86);
+  list-style: none;
+}
+
+.fpc-advanced summary::-webkit-details-marker {
+  display: none;
+}
+
+.fpc-advanced summary::before {
+  content: "+";
+  display: inline-block;
+  margin-right: 0.55rem;
+}
+
+.fpc-advanced[open] summary::before {
+  content: "-";
+}
+
+.fpc-advanced[open] summary {
+  margin-bottom: 1rem;
+}
+
+.fpc-grid {
+  display: grid;
+  gap: 1rem 1.15rem;
+}
+
+.fpc-grid.two {
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+}
+
+.fpc-grid.three {
+  grid-template-columns: repeat(auto-fit, minmax(12.5rem, 1fr));
+}
+
+.fpc-field {
+  min-width: 0;
+}
+
+.fpc-field label,
+.fpc-fieldset legend {
+  display: block;
+  margin-bottom: 0.55rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08rem;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.fpc-field input,
+.fpc-field select {
+  width: 100%;
+  height: 3rem;
+  padding: 0 0.85rem;
+  border: solid 1px rgba(255, 255, 255, 0.16);
+  border-radius: 0.8rem;
+  background: rgba(255, 255, 255, 0.06);
+  color: #ffffff;
+}
+
+.fpc-field select option {
+  color: #111111;
+}
+
+.fpc-field input:focus,
+.fpc-field select:focus {
+  border-color: #f3d3a7;
+  box-shadow: 0 0 0 0.18rem rgba(243, 211, 167, 0.18);
+}
+
+.fpc-field input::placeholder {
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.fpc-field small {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 0.76rem;
+  color: rgba(255, 255, 255, 0.56);
+}
+
+.fpc-fieldset {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+.fpc-radio-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.fpc-radio {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  min-height: 3rem;
+  padding: 0.8rem 0.9rem;
+  border: solid 1px rgba(255, 255, 255, 0.14);
+  border-radius: 0.8rem;
+  background: rgba(255, 255, 255, 0.04);
+  cursor: pointer;
+}
+
+.fpc-radio input {
+  margin: 0;
+}
+
+.fpc-results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: 1rem;
+  margin-top: 1.25rem;
+}
+
+.fpc-metric {
+  padding: 1rem;
+  border-radius: 0.9rem;
+  border: solid 1px rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.fpc-metric-label {
+  margin-bottom: 0.45rem;
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 0.76rem;
+  letter-spacing: 0.12rem;
+  text-transform: uppercase;
+}
+
+.fpc-metric-value {
+  font-size: clamp(1.5rem, 4vw, 2.15rem);
+  font-weight: 700;
+  line-height: 1.05;
+}
+
+.fpc-bar {
+  display: flex;
+  width: 100%;
+  height: 1rem;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+  margin-top: 1rem;
+}
+
+.fpc-bar-clinician {
+  background: linear-gradient(90deg, #f3d3a7 0%, #efbf7b 100%);
+}
+
+.fpc-bar-owner {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.fpc-legend {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 0.75rem;
+  padding: 0 0.35rem;
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.fpc-callout {
+  padding: 1rem;
+  border-radius: 0.9rem;
+  border: solid 1px rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.fpc-status {
+  margin-bottom: 0.45rem;
+  font-weight: 700;
+  letter-spacing: 0.06rem;
+  text-transform: uppercase;
+}
+
+.fpc-status.good {
+  color: #9ce3b6;
+}
+
+.fpc-status.caution {
+  color: #ffd199;
+}
+
+.fpc-status.warn {
+  color: #ffb7a3;
+}
+
+.fpc-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0.9rem;
+}
+
+.fpc-table td {
+  padding: 0.9rem 0.85rem;
+  border-bottom: solid 1px rgba(255, 255, 255, 0.1);
+}
+
+.fpc-table td:last-child {
+  text-align: right;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.fpc-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.fpc-button {
+  min-width: 11rem;
+}
+
+.fair-pay-disclaimer {
+  margin-top: 1.25rem;
+  font-size: 0.82rem;
+}
+
+@media screen and (max-width: 1100px) {
+  .fair-pay-shell,
+  .fpc-grid.two,
+  .fpc-grid.three,
+  .fpc-results-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media screen and (max-width: 736px) {
+  .fair-pay-article {
+    width: min(64rem, calc(100vw - 1.5rem)) !important;
+    padding: 3.5rem 1.35rem 1.5rem 1.35rem !important;
+  }
+
+  .fpc-panel,
+  .fair-pay-hero {
+    padding: 1.15rem;
+  }
+
+  .fpc-legend {
+    flex-direction: column;
+  }
+}

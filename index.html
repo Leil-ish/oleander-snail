@@ -9,8 +9,10 @@
       name="viewport"
       content="width=device-width, initial-scale=1, user-scalable=no"
     />
-    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="assets/css/main.min.css" />
+    <link rel="stylesheet" href="assets/css/fair-pay-calculator.css" />
     <link rel="stylesheet" href="assets/css/fontawesome-all.min.css" />
+    <link rel="stylesheet" href="assets/css/accessibility.css" />
     <link rel="icon" href="images/favicon.ico" />
     <noscript
       ><link rel="stylesheet" href="assets/css/noscript.css"
@@ -39,10 +41,113 @@
       name="description"
       content="Trauma-informed therapy, clinical supervision, and consulting services with Leila Anderson, LMFT-S in Austin, Texas. Specializing in spiritual trauma, complex grief, shame, and empowering high-achievers and leaders to expand into their full capacity."
     />
+
+    <!-- Schema.org structured data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "LocalBusiness",
+          "@id": "https://leilaanderson.dev#business",
+          "name": "Oleander Counseling & Consulting",
+          "description": "Trauma-informed therapy, clinical supervision, and consulting services in Austin, Texas",
+          "url": "https://leilaanderson.dev",
+          "telephone": "",
+          "email": "leilacanderson@gmail.com",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Austin",
+            "addressRegion": "TX",
+            "addressCountry": "US"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": "30.2672",
+            "longitude": "-97.7431"
+          },
+          "openingHours": "Mo,Tu,We,Th,Fr 09:00-17:00",
+          "priceRange": "$200",
+          "sameAs": [
+            "https://www.linkedin.com/in/leilaanderson/",
+            "https://www.instagram.com/oleander_counseling"
+          ]
+        },
+        {
+          "@type": "Person",
+          "@id": "https://leilaanderson.dev#person",
+          "name": "Leila Anderson",
+          "jobTitle": "Licensed Marriage and Family Therapist - Supervisor",
+          "description": "Therapist, supervisor, and consultant specializing in trauma-informed care for high-achievers and leaders",
+          "url": "https://leilaanderson.dev",
+          "email": "leilacanderson@gmail.com",
+          "sameAs": [
+            "https://www.linkedin.com/in/leilaanderson/",
+            "https://www.instagram.com/oleander_counseling"
+          ],
+          "knowsAbout": [
+            "Trauma Therapy",
+            "Clinical Supervision",
+            "Spiritual Trauma",
+            "Complex Grief",
+            "LGBTQ+ Affirming Therapy",
+            "Anti-Racist Therapy",
+            "Neurodiversity"
+          ]
+        },
+        {
+          "@type": "Service",
+          "@id": "https://leilaanderson.dev#therapy-service",
+          "name": "Individual Therapy",
+          "description": "Trauma-informed therapy specializing in spiritual trauma, complex grief, shame, and perfectionism",
+          "provider": {
+            "@id": "https://leilaanderson.dev#person"
+          },
+          "areaServed": "Austin, TX and Virtual",
+          "offers": {
+            "@type": "Offer",
+            "price": "200",
+            "priceCurrency": "USD",
+            "availability": "https://schema.org/InStock"
+          }
+        },
+        {
+          "@type": "Service",
+          "@id": "https://leilaanderson.dev#supervision-service",
+          "name": "Clinical Supervision",
+          "description": "Relational supervision for LMFT Associates developing clinical authority",
+          "provider": {
+            "@id": "https://leilaanderson.dev#person"
+          },
+          "areaServed": "Austin, TX and Virtual",
+          "offers": {
+            "@type": "Offer",
+            "priceCurrency": "USD",
+            "availability": "https://schema.org/InStock"
+          }
+        },
+        {
+          "@type": "Service",
+          "@id": "https://leilaanderson.dev#consulting-service",
+          "name": "Consulting & Speaking",
+          "description": "Strategic consulting for organizations building cultures that don't rely on burnout",
+          "provider": {
+            "@id": "https://leilaanderson.dev#person"
+          },
+          "areaServed": "United States and Virtual",
+          "offers": {
+            "@type": "Offer",
+            "priceCurrency": "USD",
+            "availability": "https://schema.org/InStock"
+          }
+        }
+      ]
+    }
+    </script>
   </head>
   <body class="is-preload">
     <div id="wrapper">
-      <header id="header">
+      <header id="header" role="banner">
         <div class="logo">
                                      
           <!-- Replaced SVG with your favicon.ico image -->
@@ -51,6 +156,7 @@
             src="images/logo.png"
             alt="Oleander Counseling Logo"
             class="logo-img"
+            loading="lazy"
           />
         </div>
         <div class="content">
@@ -62,9 +168,9 @@
             </p>
           </div>
         </div>
-        <nav>
+        <nav role="navigation" aria-label="Main navigation">
           <ul>
-            <li><a href="#intro">Welcome</a></li>
+            <li><a href="#intro" aria-current="page">Welcome</a></li>
             <li><a href="#services">Services</a></li>
             <li><a href="#about">About Me</a></li>
             <li><a href="#contact">Contact</a></li>
@@ -72,42 +178,41 @@
         </nav>
       </header>
 
-      <div id="main">
-        <article id="intro">
-          <h2 class="major">You can’t out-think this.</h2>
+      <div id="main" role="main">
+        <article id="intro" aria-labelledby="intro-heading">
+          <h2 id="intro-heading" class="major">You can't out-think this.</h2>
           <span class="image main"
-            ><img src="images/banner.jpg" alt="Austin skyline"
+            ><img
+              src="images/banner.jpg"
+              alt="Austin skyline"
+              loading="lazy"
+              aria-describedby="intro-description"
           /></span>
 
-          <p>
-            You’re highly self-aware. You’ve analyzed your past, you understand
-            your "why," and you can explain your patterns to anyone who asks.
-            But understanding it hasn't changed it.
+          <p id="intro-description">
+            You're highly self-aware. You've analyzed your past, you understand your "why," and you can explain your patterns to anyone who asks. But understanding it hasn't changed it.
           </p>
 
           <p>
-            You’re still exhausted. You’re still over-functioning. You’re still
-            waiting for the other shoe to drop because you’ve built a life based
-            on who you were told to be, not who you actually are.
+            You're still exhausted. You're still over-functioning. You're still waiting for the other shoe to drop because you've built a life based on who you were told to be, not who you actually are.
           </p>
 
           <p>
-            Success shouldn’t feel this heavy. If intellect alone could fix
-            this, you’d have solved it years ago. I offer a space where you can
-            stop analyzing your life and start living it.
+            Success shouldn’t feel this heavy. If intellect alone could fix this, you’d have solved it years ago. I offer a space where you can stop analyzing your life and start living it.
           </p>
 
           <p style="text-align: center; margin-top: 2em">
-            <a href="#services" class="button">The Work</a>
+            <a href="#services" class="button">Services & Pricing</a>
           </p>
         </article>
 
-        <article id="services">
-          <h2 class="major">The Work</h2>
+        <article id="services" aria-labelledby="services-heading">
+          <h2 id="services-heading" class="major">Services & Pricing</h2>
           <span class="image main"
             ><img
               src="images/flower.jpg"
               alt="Flower growing out of cracked ground"
+              loading="lazy"
           /></span>
 
           <h3>Therapy</h3>
@@ -121,6 +226,21 @@
             <strong>The Tools:</strong> Parts work, challenging old assumptions,
             and picking up new skills. We use these to reset your nervous system
             so your body finally believes what your mind already knows.
+          </p>
+
+          <p>
+            <strong>In-Office (Coming 2026):</strong> I plan to return to in-office work in 2026 and am currently looking for the right space.
+          </p>
+
+          <p>
+            <strong>Session Format:</strong> I offer both virtual sessions via
+            secure video platform and "walk and talk" sessions at various Austin
+            parks and trails. Walk and talk sessions combine the benefits of
+            movement and nature with therapeutic conversation.
+          </p>
+
+          <p>
+            <strong>Session Duration:</strong> Standard sessions are 50-60 minutes.
           </p>
 
           <p>
@@ -148,10 +268,10 @@
           </p>
         </article>
 
-        <article id="about">
-          <h2 class="major">About Me</h2>
+        <article id="about" aria-labelledby="about-heading">
+          <h2 id="about-heading" class="major">About Me</h2>
           <span class="image main"
-            ><img src="images/headshot.jpg" alt="Leila Anderson, LMFT-S"
+            ><img src="images/headshot.jpg" alt="Leila Anderson, LMFT-S" loading="lazy"
           /></span>
 
           <p>
@@ -172,7 +292,7 @@
             I don't believe therapy is a neutral act. My work is intentionally
             informed by the following lenses:
           </p>
-          <ul style="font-size: 0.9em; list-style-type: none; padding-left: 0">
+          <ul style="list-style-type: none; padding-left: 0">
             <li>
               <strong>Anti-Racist & Decolonial:</strong> Naming how systemic
               oppression and white supremacy impact your mental health.
@@ -209,22 +329,115 @@
             <a href="#contact" class="button">Connect</a>
           </p>
         </article>
-        <article id="contact">
-          <h2 class="major">Let's talk.</h2>
+        <article id="calculator" class="fair-pay-article" aria-labelledby="calculator-heading">
+          <h2 id="calculator-heading" class="major">Fair Pay Calculator</h2>
+
+          <p class="calculator-intro">
+            This calculator estimates overhead first, then looks at how the
+            remaining margin is divided.
+          </p>
+          <p>
+            For fully licensed clinicians, this tool uses a 50/50 post-overhead
+            benchmark. For associates, it defaults to 80% of that benchmark,
+            with room to adjust.
+          </p>
+
+          <div class="fair-pay-shell">
+            <section class="fair-pay-card fair-pay-hero" aria-label="Calculator framing">
+              <div class="fair-pay-badge">Private practice pay fairness</div>
+              <h3>Fairness starts after overhead.</h3>
+              <p>
+                The calculator estimates what it costs to support your sessions,
+                then benchmarks how the remaining post-overhead margin is split.
+              </p>
+              <ul class="fair-pay-points">
+                <li>Estimate actual collected revenue per session.</li>
+                <li>Convert monthly overhead into cost per completed session.</li>
+                <li>Benchmark the clinician share against post-overhead norms.</li>
+              </ul>
+            </section>
+
+            <div id="fair-pay-calculator" class="fair-pay-calculator-root"></div>
+          </div>
+
+          <p class="fair-pay-disclaimer">
+            Educational estimate only. Use it to ground a transparency conversation,
+            not to replace legal, accounting, or contract review.
+          </p>
+
+          <section class="fair-pay-notes" aria-labelledby="fair-pay-notes-heading">
+            <h3 id="fair-pay-notes-heading" class="major">Methodology Notes</h3>
+
+            <p>
+              This tool is trying to answer a specific question: once the cost of
+              running the practice is estimated, how is the remaining margin being
+              divided between the clinician doing the clinical work and the owner
+              carrying the business?
+            </p>
+
+            <h4>Assumptions</h4>
+            <ul>
+              <li>Revenue is estimated from your listed session rate or blended reimbursement average, adjusted by collection rate and no-show assumptions.</li>
+              <li>Overhead is estimated from the costs you enter, plus any optional assumptions for benefits, payroll, card processing, and billing fees.</li>
+              <li>Fairness is judged primarily on share of post-overhead margin, not just share of gross revenue.</li>
+              <li>For fully licensed clinicians, the baseline benchmark is a 50/50 split of post-overhead margin.</li>
+              <li>For associates, the benchmark defaults lower because supervision, reduced independent market value, and training structure often change the economics, but that multiplier is adjustable.</li>
+            </ul>
+
+            <h4>What Clinician-Favoring Structures Tend to Offer</h4>
+            <ul>
+              <li>A larger share of post-overhead margin going directly to the person doing the clinical work.</li>
+              <li>More immediate earning power for clinicians with strong caseloads or high reimbursement rates.</li>
+              <li>Less room for the practice to subsidize low-utilization clinicians, extensive admin support, or richer benefits.</li>
+            </ul>
+
+            <h4>What Practice-Favoring Structures Tend to Offer</h4>
+            <ul>
+              <li>More retained margin for admin labor, infrastructure, supervision, onboarding, and business stability.</li>
+              <li>More capacity to smooth out uneven caseloads, absorb ramp-up periods, or support clinicians who are not yet fully built out.</li>
+              <li>A higher risk that the structure drifts into owner-favoring territory if transparency is low and the clinician share stays well below benchmark.</li>
+            </ul>
+
+            <h4>What a Balanced Structure Should Feel Like</h4>
+            <ul>
+              <li>The clinician should be able to understand, in broad terms, what the practice is paying for and why the split is what it is.</li>
+              <li>The owner should not be retaining more than half of post-overhead margin for a fully licensed clinician and calling that simply “standard.”</li>
+              <li>The arrangement should feel sustainable for both parties, not like one side is subsidizing the other indefinitely without clarity.</li>
+            </ul>
+
+            <h4>Tension Built Into the System</h4>
+            <p>
+              There is real structural tension baked into group practice economics.
+              As clinicians see more clients, each hour of therapy becomes cheaper
+              for the practice to support because fixed costs are spread across
+              more sessions. That means part-time clinicians and clinicians with
+              lower caseloads can be genuinely harder to support inside a group
+              model, even when the practice is acting in good faith.
+            </p>
+            <p>
+              That does not mean a low split is automatically fair. It means the
+              economics get tighter at lower utilization, and practices that want
+              to support part-time or ramping clinicians need to be honest about
+              how they are handling that tension.
+            </p>
+          </section>
+        </article>
+        <article id="contact" aria-labelledby="contact-heading">
+          <h2 id="contact-heading" class="major">Let's talk.</h2>
           <p>
             Send a brief note about what’s going on. I’ll get back to you within
             48 hours to schedule a consultation.
           </p>
 
-          <form method="post" action="https://formspree.io/f/mpzbkgwk">
+          <form method="post" action="https://formspree.io/f/mpzbkgwk" aria-labelledby="contact-heading">
             <div class="fields">
               <div class="field half">
                 <label for="name">Name</label>
-                <input type="text" name="name" id="name" required />
+                <input type="text" name="name" id="name" required aria-required="true" />
               </div>
               <div class="field half">
                 <label for="email">Email</label>
-                <input type="email" name="email" id="email" required />
+                <input type="email" name="email" id="email" required aria-required="true" />
               </div>
               <div class="field">
                 <label for="message">What's on your mind?</label>
@@ -233,6 +446,7 @@
                   id="message"
                   rows="4"
                   required
+                  aria-required="true"
                 ></textarea>
               </div>
             </div>
@@ -268,8 +482,8 @@
           </ul>
         </article>
 
-        <article id="legal">
-          <h2 class="major">Consumer Protection</h2>
+        <article id="legal" aria-labelledby="legal-heading">
+          <h2 id="legal-heading" class="major">Consumer Protection</h2>
 
           <h3>Access to Records & Complaints</h3>
           <p>
@@ -365,9 +579,10 @@
         </article>
       </div>
 
-      <footer id="footer">
+      <footer id="footer" role="contentinfo">
         <p class="copyright">
-          &copy; 2025 Leila Anderson |
+          &copy; 2026 Leila Anderson |
+          <a href="#calculator">Fair Pay Calculator</a> |
           <a href="#legal">Consumer Protection & Public Notices</a>
         </p>
       </footer>
@@ -379,6 +594,7 @@
     <script src="assets/js/browser.min.js"></script>
     <script src="assets/js/breakpoints.min.js"></script>
     <script src="assets/js/util.js"></script>
-    <script src="assets/js/main.js"></script>
+    <script src="assets/js/main.min.js"></script>
+    <script src="assets/js/fair-pay-calculator.js"></script>
   </body>
 </html>

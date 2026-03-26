@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://leilaanderson.dev/sitemap.xml
+
+# Block common non-content files
+Disallow: /assets/
+Disallow: /deprecated/
+Disallow: /*.json$
+Disallow: /*.log$
