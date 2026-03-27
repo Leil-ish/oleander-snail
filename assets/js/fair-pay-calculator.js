@@ -133,7 +133,7 @@
     '    </div>',
     '    <div class="fpc-section">',
     '      <h4>Benchmark settings</h4>',
-    '      <p id="fpc-benchmark-note" class="fpc-note">For fully licensed clinicians, W-2 mode starts from a 50/50 post-overhead benchmark and scales upward when margin gets healthier. For associates, it uses 80% of that benchmark.</p>',
+    '      <p id="fpc-benchmark-note" class="fpc-note">For fully licensed clinicians, W-2 mode starts from a 50/50 post-overhead benchmark and scales upward when margin gets healthier. For associates, it starts lower and moves closer to the fully licensed benchmark as surplus gets stronger.</p>',
     '      <div class="fpc-grid two">',
     '        <div class="fpc-field">',
     '          <label for="fpc-clinician-type">Clinician type</label>',
@@ -495,18 +495,21 @@
   }
 
   function getBenchmarkProfile(employmentMode, clinicianType, marginPerCompletedSession, completedSessions, monthlyRevenue) {
+    var fullyLicensedBaseTarget = getBenchmarkShare(employmentMode, "fullyLicensed");
     var baseTarget = getBenchmarkShare(employmentMode, clinicianType);
     var monthlyMargin = marginPerCompletedSession * completedSessions;
     var adjustment = 0;
     var marginLabel = "";
     var characteristics = "";
+    var associateCatchUp = 0;
 
     if (marginPerCompletedSession <= 0 || monthlyRevenue <= 0) {
       return {
         benchmarkNetShare: baseTarget,
         monthlyMargin: monthlyMargin,
         marginLabel: "No positive margin",
-        characteristics: "There is not positive post-overhead margin to split, so the calculator cannot apply a meaningful fairness benchmark."
+        characteristics: "There is not positive post-overhead margin to split, so the calculator cannot apply a meaningful fairness benchmark.",
+        associateStartingPoint: clinicianType === "associate" ? baseTarget : null
       };
     }
 
@@ -515,23 +518,31 @@
       characteristics = "This looks like a low-price, low-volume, or high-overhead setup where there is not much true surplus left after costs. In that kind of structure, a lower benchmark can still read as balanced because the practice is not sitting on much extra margin.";
     } else if (marginPerCompletedSession < 35 || monthlyMargin < 3000) {
       adjustment = 5;
+      associateCatchUp = clinicianType === "associate" ? 2 : 0;
       marginLabel = "Moderate-margin structure";
       characteristics = "There is some real surplus after overhead, but not an enormous amount. Once margin gets into this range, a clinician share above the bare minimum starts to feel more appropriate than a flat baseline split.";
     } else if (marginPerCompletedSession < 60 || monthlyMargin < 6000) {
       adjustment = 10;
+      associateCatchUp = clinicianType === "associate" ? 4 : 0;
       marginLabel = "Healthy-margin structure";
       characteristics = "This arrangement is generating enough post-overhead surplus that the clinician benchmark should rise. A practice retaining half of the remaining profit starts to become harder to justify here.";
     } else {
       adjustment = 15;
+      associateCatchUp = clinicianType === "associate" ? 6 : 0;
       marginLabel = "High-surplus structure";
       characteristics = "This looks like a high-fee, high-volume, or highly efficient structure with substantial post-overhead profit. In this range, a clinician share well above the baseline becomes easier to justify, and owner retention deserves more scrutiny.";
+    }
+
+    if (clinicianType === "associate") {
+      baseTarget = Math.min(baseTarget + associateCatchUp, fullyLicensedBaseTarget);
     }
 
     return {
       benchmarkNetShare: baseTarget + adjustment,
       monthlyMargin: monthlyMargin,
       marginLabel: marginLabel,
-      characteristics: characteristics
+      characteristics: characteristics,
+      associateStartingPoint: clinicianType === "associate" ? getBenchmarkShare(employmentMode, clinicianType) : null
     };
   }
 
@@ -658,8 +669,8 @@
       : "W-2 mode assumes the practice may be carrying benefits, payroll, and more support infrastructure, so the fairness benchmark starts from a lower tipping point.";
 
     benchmarkNote.textContent = isContractor
-      ? "For fully licensed clinicians, 1099 mode starts from a 60/40 post-overhead benchmark on the clinician side, then adjusts upward when the structure is generating stronger margin. For associates, it uses 80% of that benchmark."
-      : "For fully licensed clinicians, W-2 mode starts from a 50/50 post-overhead benchmark, then adjusts upward when the structure is generating stronger margin. For associates, it uses 80% of that benchmark.";
+      ? "For fully licensed clinicians, 1099 mode starts from a 60/40 post-overhead benchmark on the clinician side, then adjusts upward when the structure is generating stronger margin. For associates, it starts lower and moves closer to the fully licensed benchmark as surplus gets stronger."
+      : "For fully licensed clinicians, W-2 mode starts from a 50/50 post-overhead benchmark, then adjusts upward when the structure is generating stronger margin. For associates, it starts lower and moves closer to the fully licensed benchmark as surplus gets stronger.";
   }
 
   function resetDefaults() {
@@ -809,7 +820,7 @@
     var clinicianBar = marginPerCompletedSession > 0 ? clamp(clinicianShareMargin, 0, 100) : 0;
     var ownerBar = marginPerCompletedSession > 0 ? clamp(100 - clinicianShareMargin, 0, 100) : 0;
     var benchmarkContext = clinicianType === "associate"
-      ? benchmarkProfile.marginLabel + ". Associate benchmark uses " + percent(associateTargetMultiplier * 100) + " of the fully licensed target for this mode."
+      ? benchmarkProfile.marginLabel + ". Associate benchmark starts from " + percent(associateTargetMultiplier * 100) + " of the fully licensed target for this mode, then moves closer to the fully licensed benchmark as surplus gets stronger."
       : benchmarkProfile.marginLabel + ". " + (currentMode === "contractor"
           ? "1099 mode starts from a 60/40 post-overhead benchmark on the clinician side and scales up as margin gets stronger."
           : "W-2 mode starts from a 50/50 post-overhead benchmark and scales up as margin gets stronger.");
