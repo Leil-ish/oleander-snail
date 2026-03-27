@@ -25,6 +25,23 @@
     return;
   }
 
+  document.addEventListener("click", function (event) {
+    var calculatorArticle = document.getElementById("calculator");
+    var isCalculatorActive = calculatorArticle
+      && calculatorArticle.classList.contains("active")
+      && window.location.hash === "#calculator";
+
+    if (!isCalculatorActive) {
+      return;
+    }
+
+    if (calculatorArticle.contains(event.target)) {
+      return;
+    }
+
+    event.stopPropagation();
+  }, true);
+
   root.innerHTML = [
     '<div class="fpc-wrap">',
     '  <section class="fair-pay-card fpc-panel" aria-labelledby="fpc-inputs-heading">',
@@ -116,7 +133,7 @@
     '    </div>',
     '    <div class="fpc-section">',
     '      <h4>Benchmark settings</h4>',
-    '      <p id="fpc-benchmark-note" class="fpc-note">For fully licensed clinicians, W-2 mode uses a 50/50 post-overhead benchmark. For associates, it uses 80% of that benchmark.</p>',
+    '      <p id="fpc-benchmark-note" class="fpc-note">For fully licensed clinicians, W-2 mode starts from a 50/50 post-overhead benchmark and scales upward when margin gets healthier. For associates, it uses 80% of that benchmark.</p>',
     '      <div class="fpc-grid two">',
     '        <div class="fpc-field">',
     '          <label for="fpc-clinician-type">Clinician type</label>',
@@ -128,115 +145,134 @@
     '      </div>',
     '    </div>',
     '    <div class="fpc-section">',
-    '      <h4>Basic overhead</h4>',
-    '      <div class="fpc-grid three">',
+    '      <h4>Overhead assumptions</h4>',
+    '      <p class="fpc-note fpc-note-compact">Blank overhead fields are treated as $0.</p>',
+    '      <div class="fpc-subsection">',
+    '        <h5 class="fpc-subhead">Shared practice costs</h5>',
+    '        <p class="fpc-note">Enter the total monthly costs the practice owner is covering across the shared practice setup. The calculator will divide these costs across the number of clinicians sharing them.</p>',
+    '        <div class="fpc-grid two">',
+    '          <div class="fpc-field">',
+    '            <label for="fpc-shared-clinicians">Clinicians sharing these costs</label>',
+    '            <div class="fpc-input-affix">',
+    '              <input id="fpc-shared-clinicians" name="sharedClinicians" type="number" min="1" step="1" value="1" />',
+    '            </div>',
+    '            <small>Use the total number of clinicians sharing bookkeeping and other group practice overhead.</small>',
+    '          </div>',
+    '        </div>',
+    '        <div class="fpc-grid three fpc-shared-grid">',
     '        <div class="fpc-field">',
-    '          <label for="fpc-rent">Rent</label>',
+    '          <label for="fpc-bookkeeping">Bookkeeping or tax admin (shared total)</label>',
     '          <div class="fpc-input-affix">',
-    '            <input id="fpc-rent" name="rent" type="number" min="0" step="1" value="1000" />',
+            '            <input id="fpc-bookkeeping" name="bookkeeping" type="number" min="0" step="1" value="1000" />',
     '            <span class="fpc-affix">$</span>',
     '          </div>',
     '        </div>',
-    '        <div class="fpc-field">',
-    '          <label for="fpc-ehr">EHR</label>',
-    '          <div class="fpc-input-affix">',
-    '            <input id="fpc-ehr" name="ehr" type="number" min="0" step="1" value="70" />',
-    '            <span class="fpc-affix">$</span>',
-    '          </div>',
-    '        </div>',
-    '        <div class="fpc-field">',
-    '          <label for="fpc-liability">Liability insurance</label>',
-    '          <div class="fpc-input-affix">',
-    '            <input id="fpc-liability" name="liability" type="number" min="0" step="1" value="20" />',
-    '            <span class="fpc-affix">$</span>',
-    '          </div>',
-    '        </div>',
-    '        <div class="fpc-field fpc-associate-only">',
-    '          <label for="fpc-supervision">Supervision</label>',
-    '          <div class="fpc-input-affix">',
-    '            <input id="fpc-supervision" name="supervision" type="number" min="0" step="1" value="400" />',
-    '            <span class="fpc-affix">$</span>',
-    '          </div>',
-    '        </div>',
-    '        <div class="fpc-field">',
-    '          <label for="fpc-bookkeeping">Bookkeeping or tax admin</label>',
-    '          <div class="fpc-input-affix">',
-    '            <input id="fpc-bookkeeping" name="bookkeeping" type="number" min="0" step="1" value="50" />',
-    '            <span class="fpc-affix">$</span>',
-    '          </div>',
-    '        </div>',
-    '        <div class="fpc-field">',
-    '          <label for="fpc-marketing">Marketing or directory share</label>',
-    '          <div class="fpc-input-affix">',
-    '            <input id="fpc-marketing" name="marketing" type="number" min="0" step="1" value="100" />',
-    '            <span class="fpc-affix">$</span>',
+    '          <div class="fpc-field">',
+    '            <label for="fpc-other">Other shared monthly practice costs</label>',
+    '            <div class="fpc-input-affix">',
+    '              <input id="fpc-other" name="other" type="number" min="0" step="1" value="0" />',
+    '              <span class="fpc-affix">$</span>',
+    '            </div>',
     '          </div>',
     '        </div>',
     '      </div>',
-    '      <div class="fpc-field" style="margin-top: 0.9rem;">',
-    '        <label for="fpc-other">Other monthly practice costs</label>',
-    '        <div class="fpc-input-affix">',
-    '          <input id="fpc-other" name="other" type="number" min="0" step="1" value="0" />',
-    '          <span class="fpc-affix">$</span>',
+    '      <div class="fpc-subsection">',
+    '        <h5 class="fpc-subhead">Individual costs</h5>',
+    '        <p class="fpc-note">Enter costs that can be reasonably known or closely estimated for one clinician, rather than the whole practice.</p>',
+    '        <div class="fpc-grid three">',
+    '          <div class="fpc-field">',
+    '            <label for="fpc-rent">Rent</label>',
+    '            <div class="fpc-input-affix">',
+    '              <input id="fpc-rent" name="rent" type="number" min="0" step="1" value="700" />',
+    '              <span class="fpc-affix">$</span>',
+    '            </div>',
+    '            <small>Use your own monthly room or office cost if the practice is sharing a suite.</small>',
+    '          </div>',
+    '          <div class="fpc-field">',
+    '            <label for="fpc-ehr">EHR</label>',
+    '            <div class="fpc-input-affix">',
+    '              <input id="fpc-ehr" name="ehr" type="number" min="0" step="1" value="70" />',
+    '              <span class="fpc-affix">$</span>',
+    '            </div>',
+    '            <small>Your monthly EHR cost. Leave as the per-clinician amount.</small>',
+    '          </div>',
+    '          <div class="fpc-field">',
+    '            <label for="fpc-marketing">Marketing or directory spend</label>',
+    '            <div class="fpc-input-affix">',
+    '              <input id="fpc-marketing" name="marketing" type="number" min="0" step="1" value="40" />',
+    '              <span class="fpc-affix">$</span>',
+    '            </div>',
+    '            <small>Basic directory presence starts around this range, but paid growth can raise it quickly.</small>',
+    '          </div>',
+    '          <div class="fpc-field">',
+    '            <label for="fpc-liability">Liability insurance</label>',
+    '            <div class="fpc-input-affix">',
+    '              <input id="fpc-liability" name="liability" type="number" min="0" step="1" value="15" />',
+    '              <span class="fpc-affix">$</span>',
+    '            </div>',
+    '            <small>Use your own monthly liability insurance cost.</small>',
+    '          </div>',
+    '          <div class="fpc-field fpc-associate-only">',
+    '            <label for="fpc-supervision">Supervision</label>',
+    '            <div class="fpc-input-affix">',
+    '              <input id="fpc-supervision" name="supervision" type="number" min="0" step="1" value="400" />',
+    '              <span class="fpc-affix">$</span>',
+    '            </div>',
+    '            <small>Your monthly supervision cost. Leave as the per-clinician amount.</small>',
+    '          </div>',
+    '          <div class="fpc-field fpc-w2-only">',
+    '            <label for="fpc-benefits">Monthly value of benefits</label>',
+    '            <div class="fpc-input-affix">',
+    '              <input id="fpc-benefits" name="benefits" type="number" min="0" step="1" value="0" />',
+    '              <span class="fpc-affix">$</span>',
+    '            </div>',
+    '            <small>Optional. Use this for health insurance, employer tax burden, or other real W-2 benefits value.</small>',
+    '          </div>',
+    '          <div class="fpc-field fpc-w2-only">',
+    '            <label for="fpc-pto">Monthly PTO benefit value</label>',
+    '            <div class="fpc-input-affix">',
+    '              <input id="fpc-pto" name="ptoBenefit" type="number" min="0" step="1" value="0" />',
+    '              <span class="fpc-affix">$</span>',
+    '            </div>',
+    '            <small>Optional. Use this if paid time off is part of the support package and you want it counted separately.</small>',
+    '          </div>',
+    '          <div class="fpc-field fpc-w2-only">',
+    '            <label for="fpc-payroll">Monthly payroll costs</label>',
+    '            <div class="fpc-input-affix">',
+    '              <input id="fpc-payroll" name="payroll" type="number" min="0" step="1" value="25" />',
+    '              <span class="fpc-affix">$</span>',
+    '            </div>',
+    '            <small>Average payroll software and processing overhead. Set to zero if not used.</small>',
+    '          </div>',
+    '          <div class="fpc-field">',
+    '            <label for="fpc-card-fee">Credit card processing rate</label>',
+    '            <div class="fpc-input-affix">',
+    '              <input id="fpc-card-fee" name="cardFeeRate" type="number" min="0" max="100" step="0.1" value="3" />',
+    '              <span class="fpc-affix">%</span>',
+    '            </div>',
+    '            <small>Rough default for card processing on collected self-pay revenue.</small>',
+    '          </div>',
+    '          <div class="fpc-field">',
+    '            <label for="fpc-biller-rate">Biller fee rate</label>',
+    '            <div class="fpc-input-affix">',
+    '              <input id="fpc-biller-rate" name="billerFeeRate" type="number" min="0" max="100" step="0.5" value="5" />',
+    '              <span class="fpc-affix">%</span>',
+    '            </div>',
+    '            <small>Optional. Percent of collected revenue paid to a biller. Set to zero if not used.</small>',
+    '          </div>',
+    '          <div class="fpc-field fpc-w2-only">',
+    '            <label for="fpc-benefits-default">Benefits assumption quickfill</label>',
+    '            <select id="fpc-benefits-default" name="benefitsDefault">',
+    '              <option value="0">No default</option>',
+    '              <option value="300">Lean benefits estimate</option>',
+    '              <option value="600">Average benefits estimate</option>',
+    '              <option value="900">Robust benefits estimate</option>',
+    '            </select>',
+    '            <small>Optional shortcut if you want to plug in a rough monthly benefits value fast.</small>',
+    '          </div>',
     '        </div>',
     '      </div>',
     '    </div>',
-    '    <details class="fpc-section fpc-advanced">',
-    '      <summary>Advanced overhead assumptions</summary>',
-    '      <p id="fpc-advanced-note" class="fpc-note">Use this if you want to account for benefits, payroll, and per-session processing costs. Leave things at zero if they do not apply.</p>',
-    '      <div class="fpc-grid three">',
-    '        <div class="fpc-field fpc-w2-only">',
-    '          <label for="fpc-benefits">Monthly value of benefits</label>',
-    '          <div class="fpc-input-affix">',
-    '            <input id="fpc-benefits" name="benefits" type="number" min="0" step="1" value="0" />',
-    '            <span class="fpc-affix">$</span>',
-    '          </div>',
-    '          <small>Optional. You can use an estimate for health insurance, stipend value, or employer tax burden.</small>',
-    '        </div>',
-    '        <div class="fpc-field fpc-w2-only">',
-    '          <label for="fpc-pto">Monthly PTO benefit value</label>',
-    '          <div class="fpc-input-affix">',
-    '            <input id="fpc-pto" name="ptoBenefit" type="number" min="0" step="1" value="0" />',
-    '            <span class="fpc-affix">$</span>',
-    '          </div>',
-    '          <small>Optional. Use this if paid time off is part of the support package and you want it counted separately.</small>',
-    '        </div>',
-    '        <div class="fpc-field fpc-w2-only">',
-    '          <label for="fpc-payroll">Monthly payroll costs</label>',
-    '          <div class="fpc-input-affix">',
-    '            <input id="fpc-payroll" name="payroll" type="number" min="0" step="1" value="120" />',
-    '            <span class="fpc-affix">$</span>',
-    '          </div>',
-    '          <small>Average payroll software and processing overhead. Set to zero if not used.</small>',
-    '        </div>',
-    '        <div class="fpc-field">',
-    '          <label for="fpc-card-fee">Credit card fee per completed session</label>',
-    '          <div class="fpc-input-affix">',
-    '            <input id="fpc-card-fee" name="cardFeePerSession" type="number" min="0" step="0.5" value="3" />',
-    '            <span class="fpc-affix">$</span>',
-    '          </div>',
-    '          <small>Default assumes about three dollars per completed card transaction.</small>',
-    '        </div>',
-    '        <div class="fpc-field">',
-    '          <label for="fpc-biller-rate">Biller fee rate</label>',
-    '          <div class="fpc-input-affix">',
-    '            <input id="fpc-biller-rate" name="billerFeeRate" type="number" min="0" max="100" step="0.5" value="5" />',
-    '            <span class="fpc-affix">%</span>',
-    '          </div>',
-    '          <small>Optional. Percent of collected revenue paid to a biller. Set to zero if not used.</small>',
-    '        </div>',
-    '        <div class="fpc-field fpc-w2-only">',
-    '          <label for="fpc-benefits-default">Benefits assumption quickfill</label>',
-    '          <select id="fpc-benefits-default" name="benefitsDefault">',
-    '            <option value="0">No default</option>',
-    '            <option value="300">Lean benefits estimate</option>',
-    '            <option value="600">Average benefits estimate</option>',
-    '            <option value="900">Robust benefits estimate</option>',
-    '          </select>',
-    '          <small>Optional shortcut if you want to plug in a rough monthly benefits value fast.</small>',
-    '        </div>',
-    '      </div>',
-    '    </details>',
     '    <div class="fpc-actions">',
     '      <button type="button" class="button primary fpc-button" id="fpc-recalculate">Recalculate</button>',
     '      <button type="button" class="button fpc-button" id="fpc-reset">Reset defaults</button>',
@@ -281,17 +317,18 @@
     flatRate: 40,
     splitPercent: 50,
     clinicianType: "fullyLicensed",
-    rent: 1000,
+    sharedClinicians: 1,
+    rent: 700,
     ehr: 70,
-    liability: 20,
+    liability: 15,
     supervision: 400,
-    bookkeeping: 50,
-    marketing: 100,
+    bookkeeping: 1000,
+    marketing: 40,
     other: 0,
     benefits: 0,
     ptoBenefit: 0,
-    payroll: 120,
-    cardFeePerSession: 3,
+    payroll: 25,
+    cardFeeRate: 3,
     billerFeeRate: 5,
     benefitsDefault: 0
   };
@@ -457,7 +494,48 @@
       : fullyLicensedTargetNetShare;
   }
 
-  function getInterpretation(employmentMode, clinicianType, actualNetShare, benchmarkNetShare, marginPerCompletedSession) {
+  function getBenchmarkProfile(employmentMode, clinicianType, marginPerCompletedSession, completedSessions, monthlyRevenue) {
+    var baseTarget = getBenchmarkShare(employmentMode, clinicianType);
+    var monthlyMargin = marginPerCompletedSession * completedSessions;
+    var adjustment = 0;
+    var marginLabel = "";
+    var characteristics = "";
+
+    if (marginPerCompletedSession <= 0 || monthlyRevenue <= 0) {
+      return {
+        benchmarkNetShare: baseTarget,
+        monthlyMargin: monthlyMargin,
+        marginLabel: "No positive margin",
+        characteristics: "There is not positive post-overhead margin to split, so the calculator cannot apply a meaningful fairness benchmark."
+      };
+    }
+
+    if (marginPerCompletedSession < 15 || monthlyMargin < 1000) {
+      marginLabel = "Thin-margin structure";
+      characteristics = "This looks like a low-price, low-volume, or high-overhead setup where there is not much true surplus left after costs. In that kind of structure, a lower benchmark can still read as balanced because the practice is not sitting on much extra margin.";
+    } else if (marginPerCompletedSession < 35 || monthlyMargin < 3000) {
+      adjustment = 5;
+      marginLabel = "Moderate-margin structure";
+      characteristics = "There is some real surplus after overhead, but not an enormous amount. Once margin gets into this range, a clinician share above the bare minimum starts to feel more appropriate than a flat baseline split.";
+    } else if (marginPerCompletedSession < 60 || monthlyMargin < 6000) {
+      adjustment = 10;
+      marginLabel = "Healthy-margin structure";
+      characteristics = "This arrangement is generating enough post-overhead surplus that the clinician benchmark should rise. A practice retaining half of the remaining profit starts to become harder to justify here.";
+    } else {
+      adjustment = 15;
+      marginLabel = "High-surplus structure";
+      characteristics = "This looks like a high-fee, high-volume, or highly efficient structure with substantial post-overhead profit. In this range, a clinician share well above the baseline becomes easier to justify, and owner retention deserves more scrutiny.";
+    }
+
+    return {
+      benchmarkNetShare: baseTarget + adjustment,
+      monthlyMargin: monthlyMargin,
+      marginLabel: marginLabel,
+      characteristics: characteristics
+    };
+  }
+
+  function getInterpretation(employmentMode, clinicianType, actualNetShare, benchmarkNetShare, marginPerCompletedSession, benchmarkProfile) {
     var benchmarkDifference = actualNetShare - benchmarkNetShare;
 
     if (marginPerCompletedSession <= 0) {
@@ -473,7 +551,7 @@
         return {
           statusClass: "warn",
           statusLabel: "Below associate benchmark",
-          statusText: "Based on the benchmark used for associates in this mode, the clinician share is landing meaningfully below target."
+          statusText: benchmarkProfile.characteristics + " Based on that profile, the clinician share is landing meaningfully below the associate benchmark."
         };
       }
 
@@ -481,77 +559,77 @@
         return {
           statusClass: "good",
           statusLabel: "Stronger than typical associate benchmark",
-          statusText: "The clinician share is running meaningfully above the associate benchmark for this mode."
+          statusText: benchmarkProfile.characteristics + " Based on that profile, the clinician share is running meaningfully above the associate benchmark."
         };
       }
 
       return {
         statusClass: "caution",
         statusLabel: "Within expected associate range",
-        statusText: "The clinician share is landing near the associate benchmark for this mode."
+        statusText: benchmarkProfile.characteristics + " Based on that profile, the clinician share is landing near the associate benchmark."
       };
     }
 
     if (employmentMode === "contractor") {
-      if (actualNetShare < 55) {
+      if (benchmarkDifference < -5) {
         return {
           statusClass: "warn",
-          statusLabel: "Below common 1099 benchmark",
-          statusText: "For a 1099 clinician, the share of post-overhead margin is landing below a stronger contractor benchmark."
+          statusLabel: "Below 1099 benchmark",
+          statusText: benchmarkProfile.characteristics + " For a 1099 clinician, the share of post-overhead margin is landing meaningfully below the benchmark for this kind of structure."
         };
       }
 
-      if (actualNetShare < 60) {
+      if (benchmarkDifference < 0) {
         return {
           statusClass: "caution",
           statusLabel: "Slightly below 1099 benchmark",
-          statusText: "The clinician share is a little below the contractor benchmark, which means the practice is still retaining a larger share than expected for a 1099 arrangement."
+          statusText: benchmarkProfile.characteristics + " The clinician share is a little below the benchmark, which means the practice is still retaining a larger share than expected for this 1099 arrangement."
         };
       }
 
-      if (actualNetShare <= 65) {
+      if (benchmarkDifference <= 5) {
         return {
           statusClass: "good",
           statusLabel: "Within balanced 1099 range",
-          statusText: "The clinician is receiving a contractor-typical share of post-overhead margin."
+          statusText: benchmarkProfile.characteristics + " The clinician is receiving a contractor-typical share of post-overhead margin for this level of margin."
         };
       }
 
       return {
         statusClass: "good",
         statusLabel: "Clinician-favoring relative to 1099 benchmark",
-        statusText: "The clinician is receiving more than the typical contractor benchmark for post-overhead margin."
+        statusText: benchmarkProfile.characteristics + " The clinician is receiving more than the typical contractor benchmark for this level of post-overhead margin."
       };
     }
 
-    if (actualNetShare < 45) {
+    if (benchmarkDifference < -5) {
       return {
         statusClass: "warn",
-        statusLabel: "Below common fairness benchmark",
-        statusText: "The clinician is receiving less than 45% of post-overhead margin, which puts the split below a common fairness benchmark for a fully licensed W-2 clinician."
+        statusLabel: "Below fairness benchmark",
+        statusText: benchmarkProfile.characteristics + " Based on that margin profile, the clinician share is landing meaningfully below benchmark."
       };
     }
 
-    if (actualNetShare < 50) {
+    if (benchmarkDifference < 0) {
       return {
         statusClass: "caution",
         statusLabel: "Slightly below benchmark",
-        statusText: "The clinician share is a little below a balanced 50/50 split of post-overhead margin, which means the owner is still retaining more than half."
+        statusText: benchmarkProfile.characteristics + " The clinician share is a little below the benchmark for this level of post-overhead margin."
       };
     }
 
-    if (actualNetShare <= 55) {
+    if (benchmarkDifference <= 5) {
       return {
         statusClass: "good",
         statusLabel: "Within balanced range",
-        statusText: "The clinician is receiving about half of post-overhead margin, which reads as roughly balanced."
+        statusText: benchmarkProfile.characteristics + " The clinician is receiving a roughly balanced share for this level of post-overhead margin."
       };
     }
 
     return {
       statusClass: "good",
       statusLabel: "Clinician-favoring relative to benchmark",
-      statusText: "The clinician is receiving more than half of post-overhead margin, which is stronger than the baseline W-2 benchmark."
+      statusText: benchmarkProfile.characteristics + " The clinician is receiving more than the benchmark for this level of post-overhead margin."
     };
   }
 
@@ -560,7 +638,6 @@
     var isAssociate = document.getElementById("fpc-clinician-type").value === "associate";
     var modeNote = document.getElementById("fpc-mode-note");
     var benchmarkNote = document.getElementById("fpc-benchmark-note");
-    var advancedNote = document.getElementById("fpc-advanced-note");
 
     Array.prototype.forEach.call(root.querySelectorAll(".fpc-mode-tab"), function (button) {
       var isActive = button.getAttribute("data-mode") === currentMode;
@@ -581,12 +658,8 @@
       : "W-2 mode assumes the practice may be carrying benefits, payroll, and more support infrastructure, so the fairness benchmark starts from a lower tipping point.";
 
     benchmarkNote.textContent = isContractor
-      ? "For fully licensed clinicians, 1099 mode uses a 60/40 post-overhead benchmark on the clinician side. For associates, it uses 80% of that benchmark."
-      : "For fully licensed clinicians, W-2 mode uses a 50/50 post-overhead benchmark. For associates, it uses 80% of that benchmark.";
-
-    advancedNote.textContent = isContractor
-      ? "Use this if you want to account for contractor-relevant processing costs. W-2-only benefit and payroll fields are hidden in this mode."
-      : "Use this if you want to account for benefits, payroll, and per-session processing costs. Leave things at zero if they do not apply.";
+      ? "For fully licensed clinicians, 1099 mode starts from a 60/40 post-overhead benchmark on the clinician side, then adjusts upward when the structure is generating stronger margin. For associates, it uses 80% of that benchmark."
+      : "For fully licensed clinicians, W-2 mode starts from a 50/50 post-overhead benchmark, then adjusts upward when the structure is generating stronger margin. For associates, it uses 80% of that benchmark.";
   }
 
   function resetDefaults() {
@@ -602,6 +675,7 @@
     document.getElementById("fpc-weeks").value = defaults.weeksPerMonth;
     document.getElementById("fpc-paytype").value = defaults.payType;
     document.getElementById("fpc-clinician-type").value = defaults.clinicianType;
+    document.getElementById("fpc-shared-clinicians").value = defaults.sharedClinicians;
     document.getElementById("fpc-rent").value = defaults.rent;
     document.getElementById("fpc-ehr").value = defaults.ehr;
     document.getElementById("fpc-liability").value = defaults.liability;
@@ -612,7 +686,7 @@
     document.getElementById("fpc-benefits").value = defaults.benefits;
     document.getElementById("fpc-pto").value = defaults.ptoBenefit;
     document.getElementById("fpc-payroll").value = defaults.payroll;
-    document.getElementById("fpc-card-fee").value = defaults.cardFeePerSession;
+    document.getElementById("fpc-card-fee").value = defaults.cardFeeRate;
     document.getElementById("fpc-biller-rate").value = defaults.billerFeeRate;
     document.getElementById("fpc-benefits-default").value = String(defaults.benefitsDefault);
     Array.prototype.forEach.call(root.querySelectorAll('input[name="texasCpt"]'), function (input) {
@@ -638,6 +712,7 @@
     var weeksPerMonth = Math.max(getNumber("fpc-weeks"), 0);
     var payType = document.getElementById("fpc-paytype").value;
     var clinicianType = document.getElementById("fpc-clinician-type").value;
+    var sharedClinicians = Math.max(getNumber("fpc-shared-clinicians"), 1);
     var selectedTexasCodes = getSelectedTexasCodes();
     var texasRate = selectedTexasCodes.length
       ? average(selectedTexasCodes.map(getTexasCptAverage))
@@ -656,28 +731,38 @@
 
     var ptoBenefitValue = currentMode === "w2" ? getNumber("fpc-pto") : 0;
     var payrollValue = currentMode === "w2" ? getNumber("fpc-payroll") : 0;
-    var cardFeePerSession = getNumber("fpc-card-fee");
+    var cardFeeRate = clamp(getNumber("fpc-card-fee"), 0, 100) / 100;
     var billerFeeRate = clamp(getNumber("fpc-biller-rate"), 0, 100) / 100;
 
     var completedSessions = sessionsPerWeek * weeksPerMonth * (1 - noShowRate);
     var collectedRevenuePerCompletedSession = effectiveListedRate * collectionRate;
     var monthlyRevenue = completedSessions * collectedRevenuePerCompletedSession;
     var monthlyBillerFees = monthlyRevenue * billerFeeRate;
-    var monthlyCardFees = completedSessions * cardFeePerSession;
-
-    var monthlyOverhead =
+    var monthlyCashRevenue = completedSessions * cashRate * normalizedCashMix * collectionRate;
+    var monthlyCardFees = monthlyCashRevenue * cardFeeRate;
+    var sharedOverheadTotal =
+      getNumber("fpc-bookkeeping") +
+      getNumber("fpc-other");
+    var liabilityCost = getNumber("fpc-liability");
+    if (currentMode !== "contractor") {
+      sharedOverheadTotal += liabilityCost;
+    }
+    var sharedOverheadPerClinician = sharedOverheadTotal / sharedClinicians;
+    var perClinicianOverhead =
       getNumber("fpc-rent") +
       getNumber("fpc-ehr") +
-      getNumber("fpc-liability") +
-      (clinicianType === "associate" ? getNumber("fpc-supervision") : 0) +
-      getNumber("fpc-bookkeeping") +
       getNumber("fpc-marketing") +
-      getNumber("fpc-other") +
+      (currentMode === "contractor" ? liabilityCost : 0) +
+      (clinicianType === "associate" ? getNumber("fpc-supervision") : 0) +
       benefitsValue +
       ptoBenefitValue +
       payrollValue +
       monthlyBillerFees +
       monthlyCardFees;
+
+    var monthlyOverhead =
+      sharedOverheadPerClinician +
+      perClinicianOverhead;
 
     var overheadPerCompletedSession = completedSessions > 0 ? monthlyOverhead / completedSessions : 0;
     var marginPerCompletedSession = collectedRevenuePerCompletedSession - overheadPerCompletedSession;
@@ -696,14 +781,22 @@
       ? (clinicianPayPerSession / marginPerCompletedSession) * 100
       : 0;
 
-    var benchmarkTargetNetShare = getBenchmarkShare(currentMode, clinicianType);
+    var benchmarkProfile = getBenchmarkProfile(
+      currentMode,
+      clinicianType,
+      marginPerCompletedSession,
+      completedSessions,
+      monthlyRevenue
+    );
+    var benchmarkTargetNetShare = benchmarkProfile.benchmarkNetShare;
     var differenceFromBenchmark = clinicianShareMargin - benchmarkTargetNetShare;
     var interpretation = getInterpretation(
       currentMode,
       clinicianType,
       clinicianShareMargin,
       benchmarkTargetNetShare,
-      marginPerCompletedSession
+      marginPerCompletedSession,
+      benchmarkProfile
     );
 
     var legendLeft = marginPerCompletedSession > 0
@@ -716,10 +809,10 @@
     var clinicianBar = marginPerCompletedSession > 0 ? clamp(clinicianShareMargin, 0, 100) : 0;
     var ownerBar = marginPerCompletedSession > 0 ? clamp(100 - clinicianShareMargin, 0, 100) : 0;
     var benchmarkContext = clinicianType === "associate"
-      ? "Associate benchmark uses " + percent(associateTargetMultiplier * 100) + " of the fully licensed target for this mode."
-      : (currentMode === "contractor"
-          ? "1099 mode uses a 60/40 post-overhead benchmark on the clinician side."
-          : "W-2 mode uses a 50/50 split of post-overhead margin.");
+      ? benchmarkProfile.marginLabel + ". Associate benchmark uses " + percent(associateTargetMultiplier * 100) + " of the fully licensed target for this mode."
+      : benchmarkProfile.marginLabel + ". " + (currentMode === "contractor"
+          ? "1099 mode starts from a 60/40 post-overhead benchmark on the clinician side and scales up as margin gets stronger."
+          : "W-2 mode starts from a 50/50 post-overhead benchmark and scales up as margin gets stronger.");
     var rateContext = useTexasRate
       ? "Insurance estimate is using " + selectedTexasCodes.length + " selected CPT code" + (selectedTexasCodes.length === 1 ? "" : "s") + " averaged to the nearest $5."
       : "Insurance estimate is using your manual average reimbursement input.";
@@ -759,6 +852,10 @@
       '    <div class="fpc-metric-value">' + (marginPerCompletedSession > 0 ? percent(clinicianShareMargin) : "N/A") + "</div>",
       "  </div>",
       '  <div class="fpc-metric">',
+      '    <div class="fpc-metric-label">Margin profile</div>',
+      '    <div class="fpc-metric-value fpc-metric-value-small">' + benchmarkProfile.marginLabel + "</div>",
+      "  </div>",
+      '  <div class="fpc-metric">',
       '    <div class="fpc-metric-label">Benchmark target net share</div>',
       '    <div class="fpc-metric-value">' + (marginPerCompletedSession > 0 ? percent(benchmarkTargetNetShare) : "N/A") + "</div>",
       "  </div>",
@@ -780,8 +877,11 @@
       "  <tr><td>Average insurance rate</td><td>" + currency(insuranceRate) + "</td></tr>",
       "  <tr><td>Cash pay share of caseload</td><td>" + percent(normalizedCashMix * 100) + "</td></tr>",
       "  <tr><td>Insurance share of caseload</td><td>" + percent(normalizedInsuranceMix * 100) + "</td></tr>",
+      "  <tr><td>Clinicians sharing overhead</td><td>" + sharedClinicians.toFixed(0) + "</td></tr>",
       "  <tr><td>Completed sessions per month</td><td>" + completedSessions.toFixed(1) + "</td></tr>",
       "  <tr><td>Estimated monthly revenue</td><td>" + currency(monthlyRevenue) + "</td></tr>",
+      "  <tr><td>Total shared overhead entered</td><td>" + currency(sharedOverheadTotal) + "</td></tr>",
+      "  <tr><td>Your share of shared overhead</td><td>" + currency(sharedOverheadPerClinician) + "</td></tr>",
       "  <tr><td>Estimated monthly overhead</td><td>" + currency(monthlyOverhead) + "</td></tr>",
       "  <tr><td>Benefits included monthly</td><td>" + currency(benefitsValue) + "</td></tr>",
       "  <tr><td>PTO included monthly</td><td>" + currency(ptoBenefitValue) + "</td></tr>",
@@ -791,7 +891,7 @@
       "  <tr><td>Your monthly pay</td><td>" + currency(clinicianMonthlyPay) + "</td></tr>",
       "  <tr><td>Practice retained per completed session</td><td>" + currency(practiceRetainedPerSession) + "</td></tr>",
       "</table>",
-      '<p class="fpc-help">' + benchmarkContext + " " + rateContext + "</p>"
+      '<p class="fpc-help">' + benchmarkContext + " " + benchmarkProfile.characteristics + " " + rateContext + "</p>"
     ].join("");
   }
 
