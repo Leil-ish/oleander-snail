@@ -1,602 +1,417 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>
-      Oleander Counseling & Consulting | Trauma-Informed Therapy in Austin, TX
-    </title>
     <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, user-scalable=no"
-    />
-    <link rel="stylesheet" href="assets/css/main.min.css" />
-    <link rel="stylesheet" href="assets/css/fair-pay-calculator.css?v=20260326" />
-    <link rel="stylesheet" href="assets/css/fontawesome-all.min.css" />
-    <link rel="stylesheet" href="assets/css/accessibility.css" />
-    <link rel="icon" href="images/favicon.ico" />
-    <noscript
-      ><link rel="stylesheet" href="assets/css/noscript.css"
-    /></noscript>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <meta
-      property="og:title"
-      content="Oleander Counseling & Consulting | ATX Therapy, Consultation, Supervision"
-    />
-           
-    <meta
-      property="og:description"
-      content="Welcome to Oleander Counseling & Consulting, a space where high-achievers, leaders, and over-thinkers finally expand into their full capacity. Specializing in trauma therapy, clinical supervision, and consulting in Austin, TX and beyond."
-    />
-           
-    <meta property="og:image" content="images/headshot.jpg" />
-           
-    <meta property="og:url" content="https://leilaanderson.dev" />
-           
-    <meta property="og:type" content="website" />
-           
-    <meta property="og:site_name" content="Oleander Counseling & Consulting" />
+    <!-- COPY: final <title> — personal brand hub, not a therapist landing page -->
+    <title>Leila Anderson — clinical depth applied to product thinking</title>
 
-           
+    <!-- COPY: final meta description -->
     <meta
       name="description"
-      content="Trauma-informed therapy, clinical supervision, and consulting services with Leila Anderson, LMFT-S in Austin, Texas. Specializing in spiritual trauma, complex grief, shame, and empowering high-achievers and leaders to expand into their full capacity."
+      content="Leila Anderson works at the intersection of clinical/behavioral depth and product thinking — pattern recognition and systems thinking, shown through the tools she builds and the writing she publishes."
     />
 
-    <!-- Schema.org structured data -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Leila Anderson" />
+    <meta property="og:url" content="https://leilaanderson.dev" />
+    <!-- COPY: final og:title / og:description -->
+    <meta
+      property="og:title"
+      content="Leila Anderson — clinical depth applied to product thinking"
+    />
+    <meta
+      property="og:description"
+      content="How I think: pattern recognition and systems thinking, applied to behavioral-health product work. Case studies, tools, and writing."
+    />
+    <meta property="og:image" content="https://leilaanderson.dev/images/headshot_original.jpg" />
+
+    <!-- COPY: replace Oleander-era favicon.ico with a personal-brand mark -->
+    <link rel="icon" href="images/favicon.ico" />
+
+    <link rel="stylesheet" href="assets/css/site.css" />
+    <link rel="stylesheet" href="assets/css/fair-pay-calculator.css?v=20260707" />
+
+    <!-- Person schema only. LocalBusiness + Service blocks removed (clinical content lives on arc-psychotherapy.com). -->
     <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "LocalBusiness",
-          "@id": "https://leilaanderson.dev#business",
-          "name": "Oleander Counseling & Consulting",
-          "description": "Trauma-informed therapy, clinical supervision, and consulting services in Austin, Texas",
-          "url": "https://leilaanderson.dev",
-          "telephone": "",
-          "email": "leilacanderson@gmail.com",
-          "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Austin",
-            "addressRegion": "TX",
-            "addressCountry": "US"
-          },
-          "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": "30.2672",
-            "longitude": "-97.7431"
-          },
-          "openingHours": "Mo,Tu,We,Th,Fr 09:00-17:00",
-          "priceRange": "$200",
-          "sameAs": [
-            "https://www.linkedin.com/in/leilaanderson/",
-            "https://www.instagram.com/oleander_counseling"
-          ]
-        },
-        {
-          "@type": "Person",
-          "@id": "https://leilaanderson.dev#person",
-          "name": "Leila Anderson",
-          "jobTitle": "Licensed Marriage and Family Therapist - Supervisor",
-          "description": "Therapist, supervisor, and consultant specializing in trauma-informed care for high-achievers and leaders",
-          "url": "https://leilaanderson.dev",
-          "email": "leilacanderson@gmail.com",
-          "sameAs": [
-            "https://www.linkedin.com/in/leilaanderson/",
-            "https://www.instagram.com/oleander_counseling"
-          ],
-          "knowsAbout": [
-            "Trauma Therapy",
-            "Clinical Supervision",
-            "Spiritual Trauma",
-            "Complex Grief",
-            "LGBTQ+ Affirming Therapy",
-            "Anti-Racist Therapy",
-            "Neurodiversity"
-          ]
-        },
-        {
-          "@type": "Service",
-          "@id": "https://leilaanderson.dev#therapy-service",
-          "name": "Individual Therapy",
-          "description": "Trauma-informed therapy specializing in spiritual trauma, complex grief, shame, and perfectionism",
-          "provider": {
-            "@id": "https://leilaanderson.dev#person"
-          },
-          "areaServed": "Austin, TX and Virtual",
-          "offers": {
-            "@type": "Offer",
-            "price": "200",
-            "priceCurrency": "USD",
-            "availability": "https://schema.org/InStock"
-          }
-        },
-        {
-          "@type": "Service",
-          "@id": "https://leilaanderson.dev#supervision-service",
-          "name": "Clinical Supervision",
-          "description": "Relational supervision for LMFT Associates developing clinical authority",
-          "provider": {
-            "@id": "https://leilaanderson.dev#person"
-          },
-          "areaServed": "Austin, TX and Virtual",
-          "offers": {
-            "@type": "Offer",
-            "priceCurrency": "USD",
-            "availability": "https://schema.org/InStock"
-          }
-        },
-        {
-          "@type": "Service",
-          "@id": "https://leilaanderson.dev#consulting-service",
-          "name": "Consulting & Speaking",
-          "description": "Strategic consulting for organizations building cultures that don't rely on burnout",
-          "provider": {
-            "@id": "https://leilaanderson.dev#person"
-          },
-          "areaServed": "United States and Virtual",
-          "offers": {
-            "@type": "Offer",
-            "priceCurrency": "USD",
-            "availability": "https://schema.org/InStock"
-          }
-        }
-      ]
-    }
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "@id": "https://leilaanderson.dev#person",
+        "name": "Leila Anderson",
+        "url": "https://leilaanderson.dev",
+        "image": "https://leilaanderson.dev/images/headshot_original.jpg",
+        "jobTitle": "Clinical AI Product Leadership, Behavioral Health",
+        "description": "Product leader with a clinical/behavioral-science background. Works on behavioral-health technology through pattern recognition and systems thinking.",
+        "sameAs": [
+          "https://www.linkedin.com/in/leilaanderson/",
+          "https://mostlythough.substack.com"
+        ],
+        "knowsAbout": [
+          "Product Strategy",
+          "Behavioral Health Technology",
+          "Clinical AI Products",
+          "Systems Thinking",
+          "Pattern Recognition",
+          "Decision Support Tools",
+          "Behavioral Science"
+        ]
+      }
     </script>
   </head>
-  <body class="is-preload">
-    <div id="wrapper">
-      <header id="header" role="banner">
-        <div class="logo">
-                                     
-          <!-- Replaced SVG with your favicon.ico image -->
-                                     
-          <img
-            src="images/logo.png"
-            alt="Oleander Counseling Logo"
-            class="logo-img"
-            loading="lazy"
-          />
-        </div>
-        <div class="content">
-          <div class="inner">
-            <h1>Oleander Counseling</h1>
-            <p>
-              A space where high-achievers, leaders, and over-thinkers<br />
-              finally expand into their full capacity.
-            </p>
-          </div>
-        </div>
-        <nav role="navigation" aria-label="Main navigation">
+
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <!-- Routing banner: quiet, dismissible, non-blocking. Points therapy-seekers to the clinical site. -->
+    <div class="route-banner" id="route-banner" role="region" aria-label="Site notice">
+      <div class="route-banner__inner">
+        <p class="route-banner__text">
+          Looking for therapy?
+          <a href="https://arc-psychotherapy.com">Visit Arc Psychotherapy&nbsp;&rarr;</a>
+        </p>
+        <button
+          type="button"
+          class="route-banner__dismiss"
+          id="route-banner-dismiss"
+          aria-label="Dismiss this notice"
+        >
+          &times;
+        </button>
+      </div>
+    </div>
+    <!-- Hide the banner before paint if it was dismissed earlier (avoids a flash). -->
+    <script>
+      (function () {
+        try {
+          if (localStorage.getItem("routeBannerDismissed") === "1") {
+            document.getElementById("route-banner").hidden = true;
+          }
+        } catch (e) {}
+      })();
+    </script>
+
+    <header class="site-header" id="top">
+      <div class="site-header__inner">
+        <a class="wordmark" href="#top">Leila&nbsp;Anderson</a>
+        <nav class="site-nav" aria-label="Primary">
           <ul>
-            <li><a href="#intro" aria-current="page">Welcome</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#about">About Me</a></li>
+            <li><a href="#work">Work</a></li>
+            <li><a href="#writing">Writing</a></li>
+            <li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
         </nav>
-      </header>
+      </div>
+    </header>
 
-      <div id="main" role="main">
-        <article id="intro" aria-labelledby="intro-heading">
-          <h2 id="intro-heading" class="major">You can't out-think this.</h2>
-          <span class="image main"
-            ><img
-              src="images/banner.jpg"
-              alt="Austin skyline"
-              loading="lazy"
-              aria-describedby="intro-description"
-          /></span>
+    <main id="main">
+      <!-- ============================================================
+           1. HERO — positioning statement + immediate proof
+           The claim and the proof arrive together: one sentence,
+           then a two-item case-study teaser row.
+      ============================================================ -->
+      <section class="hero" aria-labelledby="hero-heading">
+        <div class="container">
+          <p class="eyebrow">Pattern recognition &middot; Systems thinking</p>
+          <!-- COPY: final positioning sentence. Scaffold below names the intersection. -->
+          <h1 id="hero-heading" class="hero__statement">
+            I bring clinical and behavioral depth to product decisions&thinsp;&mdash;&thinsp;reading
+            the patterns under what people say they want, then building systems
+            around what they actually do.
+          </h1>
 
-          <p id="intro-description">
-            You're highly self-aware. You've analyzed your past, you understand your "why," and you can explain your patterns to anyone who asks. But understanding it hasn't changed it.
+          <div class="teasers" aria-label="Selected work">
+            <a class="teaser" href="#case-tradeoff">
+              <span class="teaser__label">Case study</span>
+              <span class="teaser__title">Tradeoff</span>
+              <!-- COPY: refine one-line hook -->
+              <span class="teaser__hook">
+                A decision tool that models how people really weigh cost, time,
+                friction, and identity-fit&thinsp;&mdash;&thinsp;not just the lowest price.
+              </span>
+              <span class="teaser__cta">Read the case study &rarr;</span>
+            </a>
+            <a class="teaser" href="#case-fair-pay">
+              <span class="teaser__label">Case study</span>
+              <span class="teaser__title">Fair Pay Calculator</span>
+              <!-- COPY: refine one-line hook -->
+              <span class="teaser__hook">
+                A pay-fairness tool for group practices that benchmarks the split
+                after overhead, not the gross.
+              </span>
+              <span class="teaser__cta">Read the case study &rarr;</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           2. CASE STUDIES ("Process")
+           The unit of content is a CASE. To add one, copy the block
+           marked "CASE STUDY TEMPLATE" below and fill the four parts.
+      ============================================================ -->
+      <section id="work" class="cases" aria-labelledby="work-heading">
+        <div class="container">
+          <h2 id="work-heading" class="section-heading">Process</h2>
+          <p class="section-intro">
+            Each piece of work starts as a question I couldn't stop poking at.
+            Same shape every time: notice a pattern, build the thing that proves
+            it, keep the thing honest.
           </p>
+        </div>
 
-          <p>
-            You're still exhausted. You're still over-functioning. You're still waiting for the other shoe to drop because you've built a life based on who you were told to be, not who you actually are.
-          </p>
+        <!-- ---------- CASE STUDY TEMPLATE (copy this whole <article>) ----------
+             Four parts, always in this order:
+               .case__open        — the open question / problem noticed
+               .case__pattern      — the pattern recognized (short narrative)
+               .case__artifact     — what it became (the artifact + why it's built that way)
+               .case__demonstrates — what it demonstrates (one line back to the thesis)
+             Give the <article> a unique id and aria-labelledby, and add a
+             matching teaser in the hero if it should surface up top.
+        --------------------------------------------------------------------- -->
 
-          <p>
-            Success shouldn’t feel this heavy. If intellect alone could fix this, you’d have solved it years ago. I offer a space where you can stop analyzing your life and start living it.
-          </p>
+        <!-- CASE: Tradeoff -->
+        <article id="case-tradeoff" class="case container" aria-labelledby="case-tradeoff-heading">
+          <header class="case__header">
+            <p class="eyebrow">Case study &middot; Decision-support tool</p>
+            <h3 id="case-tradeoff-heading" class="case__title">Tradeoff</h3>
+          </header>
 
-          <p style="text-align: center; margin-top: 2em">
-            <a href="#services" class="button">Services & Pricing</a>
-          </p>
-        </article>
-
-        <article id="services" aria-labelledby="services-heading">
-          <h2 id="services-heading" class="major">Services & Pricing</h2>
-          <span class="image main"
-            ><img
-              src="images/flower.jpg"
-              alt="Flower growing out of cracked ground"
-              loading="lazy"
-          /></span>
-
-          <h3>Therapy</h3>
-          <p>
-            I specialize in the things high-achievers tend to bury: religious
-            trauma, the "never-enough" cycle of perfectionism, and the specific
-            kind of grief that comes with outgrowing your environment.
-          </p>
-
-          <p>
-            <strong>The Tools:</strong> Parts work, challenging old assumptions,
-            and picking up new skills. We use these to reset your nervous system
-            so your body finally believes what your mind already knows.
-          </p>
-
-          <p>
-            <strong>In-Office (Coming 2026):</strong> I plan to return to in-office work in 2026 and am currently looking for the right space.
-          </p>
-
-          <p>
-            <strong>Session Format:</strong> I offer both virtual sessions via
-            secure video platform and "walk and talk" sessions at various Austin
-            parks and trails. Walk and talk sessions combine the benefits of
-            movement and nature with therapeutic conversation.
-          </p>
-
-          <p>
-            <strong>Session Duration:</strong> Standard sessions are 50-60 minutes.
-          </p>
-
-          <p>
-            <strong>Fee:</strong> $200/hour. Out-of-network reimbursement via
-            superbill or automated with
-            <a href="https://www.mentaya.com/" target="_blank">Mentaya</a> or
-            <a href="https://www.thrizer.com/" target="_blank">Thrizer</a>.
-          </p>
-
-          <hr />
-
-          <h3>Supervision & Consulting</h3>
-          <p>
-            <strong>For Clinicians:</strong> Relational supervision for LMFT
-            Associates who want to develop their own clinical authority rather
-            than just checking boxes.
-          </p>
-          <p>
-            <strong>For Organizations:</strong> Strategic consulting to build
-            cultures that don't rely on burnout as a feature.
-          </p>
-
-          <p style="text-align: center; margin-top: 2em">
-            <a href="#contact" class="button">Get in touch</a>
-          </p>
-        </article>
-
-        <article id="about" aria-labelledby="about-heading">
-          <h2 id="about-heading" class="major">About Me</h2>
-          <span class="image main"
-            ><img src="images/headshot.jpg" alt="Leila Anderson, LMFT-S" loading="lazy"
-          /></span>
-
-          <p>
-            I’m Leila Anderson, LMFT-S. I’m a therapist, supervisor, and
-            consultant, but more importantly, I’m someone who knows what it’s
-            like to untangle a life from systems — religious, family, and
-            corporate — that reward shrinking.
-          </p>
-
-          <p>
-            I don't do "small talk" therapy. I bring over a decade of experience
-            and a sharp lens on how power, culture, and systems shape who we
-            are.
-          </p>
-
-          <h3 class="major">Framework & Alignment</h3>
-          <p>
-            I don't believe therapy is a neutral act. My work is intentionally
-            informed by the following lenses:
-          </p>
-          <ul style="list-style-type: none; padding-left: 0">
-            <li>
-              <strong>Anti-Racist & Decolonial:</strong> Naming how systemic
-              oppression and white supremacy impact your mental health.
-            </li>
-            <li>
-              <strong>LGBTQ+ & TGNC Affirming:</strong> Centering autonomy and
-              celebration, not just tolerance.
-            </li>
-            <li>
-              <strong>Fat Positive / HAES:</strong> Rejecting weight stigma and
-              the pathologization of body size.
-            </li>
-            <li>
-              <strong>Neuro-Affirming:</strong> Moving away from "masking" and
-              toward honoring divergent brains.
-            </li>
-            <li>
-              <strong>Relational & Justice-Oriented:</strong> Recognizing that
-              your "symptoms" often make perfect sense in the context of your
-              environment.
-            </li>
-          </ul>
-
-          <p>
-            <a
-              href="https://drive.google.com/file/d/1twDmLThJ6D4ES69njHX1VEUe6dUHUNqV/view?usp=sharing"
-              class="icon solid fa-download"
-            >
-              Full CV</a
-            >
-          </p>
-
-          <p style="text-align: center; margin-top: 2em">
-            <a href="#contact" class="button">Connect</a>
-          </p>
-        </article>
-        <article id="calculator" class="fair-pay-article" aria-labelledby="calculator-heading">
-          <h2 id="calculator-heading" class="major">Fair Pay Calculator</h2>
-
-          <p class="calculator-intro">
-            This calculator estimates overhead first, then looks at how the
-            remaining margin is divided.
-          </p>
-          <p>
-            For fully licensed clinicians, this tool starts from a post-overhead
-            benchmark and raises it when the structure is generating healthier
-            surplus. For associates, it starts lower and moves closer to the
-            fully licensed benchmark when surplus is stronger.
-          </p>
-
-          <div class="fair-pay-shell">
-            <section class="fair-pay-card fair-pay-hero" aria-label="Calculator framing">
-              <div class="fair-pay-badge">Private practice pay fairness</div>
-              <h3>Fairness starts after overhead.</h3>
-              <p>
-                The calculator estimates what it costs to support your sessions,
-                then benchmarks how the remaining post-overhead margin is split.
-              </p>
-              <ul class="fair-pay-points">
-                <li>Estimate actual collected revenue per session.</li>
-                <li>Convert monthly overhead into cost per completed session.</li>
-                <li>Benchmark the clinician share against post-overhead norms.</li>
-              </ul>
-            </section>
-
-            <div id="fair-pay-calculator" class="fair-pay-calculator-root"></div>
+          <div class="case__part case__open">
+            <p class="case__label">The open question</p>
+            <!-- COPY: what pattern or gap prompted this -->
+            <p>
+              Every "which should I pick" tool collapses the decision to price.
+              Real choices don't work that way. People trade money against time,
+              against friction, against how much a thing fits the person they
+              think they are&thinsp;&mdash;&thinsp;and they stop optimizing long before the
+              spreadsheet says they should. What would a tool look like if it
+              took that seriously?
+            </p>
           </div>
 
-          <p class="fair-pay-disclaimer">
-            Educational estimate only. Use it to ground a transparency conversation,
-            not to replace legal, accounting, or contract review.
-          </p>
-
-          <section class="fair-pay-notes" aria-labelledby="fair-pay-notes-heading">
-            <h3 id="fair-pay-notes-heading" class="major">Methodology Notes</h3>
-
+          <div class="case__part case__pattern">
+            <p class="case__label">The pattern</p>
+            <!-- COPY: the moment of synthesis, told as a small narrative -->
             <p>
-              This tool is trying to answer a specific question: once the cost of
-              running the practice is estimated, how is the remaining margin being
-              divided between the clinician doing the clinical work and the owner
-              carrying the business?
+              The behavioral literature already has the pieces&thinsp;&mdash;&thinsp;diminishing
+              returns, identity-based choice, the cost of friction. Nobody had
+              wired them into a thing you could actually use. Once I lined those
+              up next to how people describe real decisions, the model wrote
+              itself: weight the axes, let the weights differ per person, and let
+              "good enough" be a legitimate stopping point instead of a failure.
             </p>
+          </div>
 
-            <h4>Assumptions</h4>
-            <ul>
-              <li>Revenue is estimated from your listed session rate or blended reimbursement average, adjusted by collection rate and no-show assumptions.</li>
-              <li>Shared practice overhead is divided across the number of clinicians you enter, while clearly per-clinician costs like EHR, supervision, benefits, payroll, and per-session fees are kept at the individual level.</li>
-              <li>Fairness is judged primarily on share of post-overhead margin, not just share of gross revenue.</li>
-              <li>For fully licensed clinicians, the calculator starts from a baseline post-overhead benchmark, then raises that benchmark when the structure is generating healthier surplus.</li>
-              <li>For associates, the benchmark starts lower as a conservative heuristic, but it moves closer to the fully licensed benchmark when the structure is generating healthier surplus.</li>
-              <li>High-fee, high-volume, or otherwise efficient structures should usually clear a higher fairness bar than thin-margin structures with little surplus left after overhead.</li>
-            </ul>
-
-            <h4>What Clinician-Favoring Structures Tend to Offer</h4>
-            <ul>
-              <li>A larger share of post-overhead margin going directly to the person doing the clinical work.</li>
-              <li>More immediate earning power for clinicians with strong caseloads or high reimbursement rates.</li>
-              <li>Less room for the practice to subsidize low-utilization clinicians, extensive admin support, or richer benefits.</li>
-            </ul>
-
-            <h4>What Practice-Favoring Structures Tend to Offer</h4>
-            <ul>
-              <li>More retained margin for admin labor, infrastructure, supervision, onboarding, and business stability.</li>
-              <li>More capacity to smooth out uneven caseloads, absorb ramp-up periods, or support clinicians who are not yet fully built out.</li>
-              <li>A higher risk that the structure drifts into owner-favoring territory if transparency is low and the clinician share stays well below benchmark.</li>
-            </ul>
-
-            <h4>What a Balanced Structure Should Feel Like</h4>
-            <ul>
-              <li>The clinician should be able to understand, in broad terms, what the practice is paying for and why the split is what it is.</li>
-              <li>The owner should not be retaining more than half of post-overhead margin for a fully licensed clinician and calling that simply “standard.”</li>
-              <li>The arrangement should feel sustainable for both parties, not like one side is subsidizing the other indefinitely without clarity.</li>
-            </ul>
-
-            <h4>Tension Built Into the System</h4>
+          <div class="case__part case__artifact">
+            <p class="case__label">What it became</p>
+            <!-- COPY: the artifact (code/tool/framework) and why it's built the way it is -->
             <p>
-              There is real structural tension baked into group practice economics.
-              As clinicians see more clients, each hour of therapy becomes cheaper
-              for the practice to support because fixed costs are spread across
-              more sessions. That means part-time clinicians and clinicians with
-              lower caseloads can be genuinely harder to support inside a group
-              model, even when the practice is acting in good faith.
+              Tradeoff is a small decision-support tool that scores options
+              across cost, time, friction, identity-fit, and diminishing returns
+              instead of ranking on price alone. It's built to expose its own
+              assumptions&thinsp;&mdash;&thinsp;you can see and change every weight&thinsp;&mdash;&thinsp;because a
+              decision tool you can't argue with is just an opinion with a
+              progress bar.
             </p>
+            <p class="case__links">
+              <a href="https://github.com/Leil-ish/tradeoff" rel="noopener">
+                Source on GitHub &rarr;
+              </a>
+            </p>
+          </div>
+
+          <div class="case__part case__demonstrates">
+            <p class="case__label">What it demonstrates</p>
+            <!-- COPY: one line connecting back to the "how I think" thesis -->
             <p>
-              That does not mean a low split is automatically fair. It means the
-              economics get tighter at lower utilization, and practices that want
-              to support part-time or ramping clinicians need to be honest about
-              how they are handling that tension.
+              Find the real unit of a decision, then build around that unit
+              instead of the number everyone defaults to.
             </p>
-          </section>
+          </div>
         </article>
-        <article id="contact" aria-labelledby="contact-heading">
-          <h2 id="contact-heading" class="major">Let's talk.</h2>
-          <p>
-            Send a brief note about what’s going on. I’ll get back to you within
-            48 hours to schedule a consultation.
-          </p>
 
-          <form method="post" action="https://formspree.io/f/mpzbkgwk" aria-labelledby="contact-heading">
-            <div class="fields">
-              <div class="field half">
-                <label for="name">Name</label>
-                <input type="text" name="name" id="name" required aria-required="true" />
-              </div>
-              <div class="field half">
-                <label for="email">Email</label>
-                <input type="email" name="email" id="email" required aria-required="true" />
-              </div>
-              <div class="field">
-                <label for="message">What's on your mind?</label>
-                <textarea
-                  name="message"
-                  id="message"
-                  rows="4"
-                  required
-                  aria-required="true"
-                ></textarea>
-              </div>
+        <!-- CASE: Fair Pay Calculator (live embedded demo) -->
+        <article id="case-fair-pay" class="case container" aria-labelledby="case-fair-pay-heading">
+          <header class="case__header">
+            <p class="eyebrow">Case study &middot; Live tool</p>
+            <h3 id="case-fair-pay-heading" class="case__title">Fair Pay Calculator</h3>
+          </header>
+
+          <div class="case__part case__open">
+            <p class="case__label">The open question</p>
+            <p>
+              Group practices argue about pay in percentages&thinsp;&mdash;&thinsp;60/40, 70/30&thinsp;&mdash;&thinsp;as
+              if the percentage were the fair thing. The percentage is not the
+              fair thing. Once a practice covers what it actually costs to keep a
+              clinician seeing clients, who gets the margin that's left? That's
+              the question nobody was calculating.
+            </p>
+          </div>
+
+          <div class="case__part case__pattern">
+            <p class="case__label">The pattern</p>
+            <p>
+              Fairness starts after overhead, not before it. A split that looks
+              generous on gross can be thin once you subtract rent, software,
+              supervision, and payroll; a split that looks stingy can be
+              reasonable once you see how little surplus the structure actually
+              produces. And the math moves with volume&thinsp;&mdash;&thinsp;fixed costs spread
+              across more sessions, so a full caseload is genuinely cheaper to
+              support than a ramping one. Any honest tool had to price that
+              tension in rather than pretend one percentage fits every clinician.
+            </p>
+          </div>
+
+          <div class="case__part case__artifact">
+            <p class="case__label">What it became</p>
+            <p>
+              The calculator estimates collected revenue per session, converts
+              monthly overhead into a cost per completed session, and benchmarks
+              the clinician's share against the <em>post-overhead</em> margin. It
+              starts from a different baseline for W-2 versus 1099 arrangements,
+              and it raises the fairness bar as the structure throws off more
+              surplus. It's a working tool, embedded here as a demonstration
+              piece&thinsp;&mdash;&thinsp;run your own numbers.
+            </p>
+
+            <div class="case__embed">
+              <div id="fair-pay-calculator" class="fair-pay-calculator-root"></div>
+              <noscript>
+                <p class="case__noscript">
+                  The calculator needs JavaScript to run. The point it makes
+                  without it: judge a pay split on the margin left after
+                  overhead, not on the gross.
+                </p>
+              </noscript>
+              <p class="fair-pay-disclaimer">
+                Educational estimate. It's here to show the method, not to
+                replace legal, accounting, or contract review.
+              </p>
             </div>
-            <ul class="actions">
-              <li>
-                <input type="submit" value="Send Message" class="primary" />
-              </li>
-            </ul>
-          </form>
+          </div>
 
-          <ul class="icons" style="text-align: center">
-            <li>
-              <a
-                href="https://www.linkedin.com/in/leilaanderson/"
-                class="icon brands fa-linkedin"
-                ><span class="label">LinkedIn</span></a
-              >
-            </li>
-            <li>
-              <a
-                href="https://www.instagram.com/oleander_counseling"
-                class="icon brands fa-instagram"
-                ><span class="label">Instagram</span></a
-              >
-            </li>
-            <li>
-              <a
-                href="mailto:leilacanderson@gmail.com"
-                class="icon solid fa-envelope"
-                ><span class="label">Email</span></a
-              >
-            </li>
-          </ul>
+          <div class="case__part case__demonstrates">
+            <p class="case__label">What it demonstrates</p>
+            <p>
+              The same move as Tradeoff: locate the real unit&thinsp;&mdash;&thinsp;here, margin
+              after overhead&thinsp;&mdash;&thinsp;and build the tool around it instead of the
+              number everyone argues about.
+            </p>
+          </div>
         </article>
+      </section>
 
-        <article id="legal" aria-labelledby="legal-heading">
-          <h2 id="legal-heading" class="major">Consumer Protection</h2>
-
-          <h3>Access to Records & Complaints</h3>
-          <p>
-            <em
-              >In compliance with Texas House Bill 4224 (89th Regular Session)
-              and Section 181.105 of the Health and Safety Code, we are
-              providing the following instructions for consumers:</em
-            >
+      <!-- ============================================================
+           3. WRITING
+           Rendered from the editable `writing` array in
+           assets/js/content.js. Add an entry there; no markup edits.
+      ============================================================ -->
+      <section id="writing" class="writing" aria-labelledby="writing-heading">
+        <div class="container">
+          <h2 id="writing-heading" class="section-heading">Writing</h2>
+          <p class="section-intro">
+            Longer thinking lives on Substack and LinkedIn. A few pieces worth
+            starting with:
           </p>
-
-          <h4>1. Requesting Your Health Care Records</h4>
-          <p>
-            You have the right to request a copy of your mental health records
-            at any time. To request your records, please follow these
-            instructions:
-          </p>
-          <ul>
-            <li>
-              Send a written request via email to
-              <strong>leilacanderson@gmail.com</strong> with the subject line
-              "Medical Records Request" to request a release of information
-              form.
-            </li>
-            <li>
-              <em
-                >Note: A reasonable, cost-based fee for copies may apply as
-                permitted by Texas law.</em
+          <ul class="writing-list" id="writing-list">
+            <!-- Populated by assets/js/content.js -->
+          </ul>
+          <noscript>
+            <p class="section-intro">
+              Read the full archive on
+              <a href="https://mostlythough.substack.com" rel="noopener">
+                &ldquo;Mostly, Though&rdquo; (Substack)</a
               >
+              or on
+              <a href="https://www.linkedin.com/in/leilaanderson/" rel="noopener">
+                LinkedIn</a
+              >.
+            </p>
+          </noscript>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           4. PROFESSIONAL CONTEXT — brief, not a resume
+      ============================================================ -->
+      <section id="about" class="about" aria-labelledby="about-heading">
+        <div class="container about__inner">
+          <img
+            class="about__photo"
+            src="images/headshot_original.jpg"
+            alt="Leila Anderson"
+            loading="lazy"
+            width="220"
+            height="220"
+          />
+          <div class="about__body">
+            <h2 id="about-heading" class="section-heading">Context</h2>
+            <!-- COPY: exact role/scope. Keep it credible, nothing proprietary. -->
+            <p>
+              I lead clinical AI product work in behavioral health&thinsp;&mdash;&thinsp;the part
+              where clinical judgment has to survive contact with a shipping
+              roadmap. My background is clinical and behavioral, which is why I
+              tend to trust what people do over what they say they'll do, and why
+              I build tools that expose their own assumptions.
+            </p>
+            <p>
+              Before product, a decade in clinical and supervisory work. That's
+              the lens I still use on systems: who carries the load, where it
+              breaks, and what the incentives actually reward.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           5. CONTACT / CLOSING — speaking, board, consulting, collaboration.
+           Not a client-booking flow.
+      ============================================================ -->
+      <section id="contact" class="contact" aria-labelledby="contact-heading">
+        <div class="container">
+          <h2 id="contact-heading" class="section-heading">Get in touch</h2>
+          <p class="contact__lede">
+            For speaking, board and licensing work, consulting, or a collaboration
+            worth the email.
+          </p>
+          <ul class="contact__links">
+            <li>
+              <a href="mailto:leilacanderson@gmail.com">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path
+                    fill="currentColor"
+                    d="M2 5.5A1.5 1.5 0 0 1 3.5 4h17A1.5 1.5 0 0 1 22 5.5v13a1.5 1.5 0 0 1-1.5 1.5h-17A1.5 1.5 0 0 1 2 18.5v-13Zm2.2.5 7.8 5.6L19.8 6H4.2ZM20 7.6l-7.4 5.3a1 1 0 0 1-1.2 0L4 7.6V18h16V7.6Z"
+                  />
+                </svg>
+                leilacanderson@gmail.com
+              </a>
+            </li>
+            <li>
+              <a href="https://www.linkedin.com/in/leilaanderson/" rel="noopener">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path
+                    fill="currentColor"
+                    d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm6 0h3.8v1.7h.05c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.78 2.5 4.78 5.75V21h-4v-5.6c0-1.34-.02-3.06-1.9-3.06-1.9 0-2.2 1.46-2.2 2.96V21H9V9Z"
+                  />
+                </svg>
+                LinkedIn
+              </a>
             </li>
           </ul>
+        </div>
+      </section>
+    </main>
 
-          <h4>2. Contacting the Licensing Council</h4>
-          <p>
-            This practice is licensed under the Texas Behavioral Health
-            Executive Council (BHEC). To contact the Council regarding a
-            licensee, please visit their contact page:<br />
-            <a href="https://bhec.texas.gov/contact-us/" target="_blank"
-              >Texas Behavioral Health Executive Council - Contact Us</a
-            >
-          </p>
-
-          <h4>3. Filing a Consumer Complaint</h4>
-          <p>
-            You have the right to file a complaint regarding consumer protection
-            issues. To file a complaint with the Office of the Attorney General,
-            please visit:<br />
-            <a
-              href="https://www.texasattorneygeneral.gov/consumer-protection"
-              target="_blank"
-              >Texas Attorney General - Consumer Protection Division</a
-            >
-          </p>
-
-          <hr />
-
-          <h3>"No Surprises Act" Notice</h3>
-          <p>
-            <strong
-              >You have the right to receive a “Good Faith Estimate” explaining
-              how much your medical care will cost.</strong
-            >
-          </p>
-          <p>
-            Under the law, health care providers need to give patients who don’t
-            have insurance or who are not using insurance an estimate of the
-            bill for medical items and services.
-          </p>
-          <ul>
-            <li>
-              You have the right to receive a Good Faith Estimate for the total
-              expected cost of any non-emergency items or services.
-            </li>
-            <li>
-              Make sure your health care provider gives you a Good Faith
-              Estimate in writing at least 1 business day before your medical
-              service or item.
-            </li>
-            <li>
-              If you receive a bill that is at least $400 more than your Good
-              Faith Estimate, you can dispute the bill.
-            </li>
-            <li>
-              Make sure to save a copy or picture of your Good Faith Estimate.
-            </li>
-          </ul>
-          <p>
-            For questions or more information about your right to a Good Faith
-            Estimate, visit
-            <a href="https://www.cms.gov/nosurprises" target="_blank"
-              >www.cms.gov/nosurprises</a
-            >.
-          </p>
-        </article>
+    <footer class="site-footer">
+      <div class="container">
+        <p>&copy; <span id="year">2026</span> Leila Anderson</p>
       </div>
+    </footer>
 
-      <footer id="footer" role="contentinfo">
-        <p class="copyright">
-          &copy; 2026 Leila Anderson |
-          <a href="#calculator">Fair Pay Calculator</a> |
-          <a href="#legal">Consumer Protection & Public Notices</a>
-        </p>
-      </footer>
-    </div>
-
-    <div id="bg"></div>
-
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/browser.min.js"></script>
-    <script src="assets/js/breakpoints.min.js"></script>
-    <script src="assets/js/util.js"></script>
-    <script src="assets/js/main.min.js"></script>
-    <script src="assets/js/fair-pay-calculator.js?v=20260326"></script>
+    <script src="assets/js/content.js"></script>
+    <script src="assets/js/fair-pay-calculator.js?v=20260707"></script>
   </body>
 </html>

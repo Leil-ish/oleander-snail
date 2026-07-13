@@ -1,73 +1,71 @@
-# Oleander Counseling & Consulting Website
+# leilaanderson.dev — personal brand hub
 
-This repository contains the front-end code for the Oleander Counseling & Consulting website, a professional online presence for **Leila Anderson, LMFT-S**. The site is designed to be a welcoming space for high-achievers, leaders, and over-thinkers seeking depth-oriented, trauma-informed therapy, clinical supervision, and consulting services.
+The site behind **leilaanderson.dev**: a personal hub about how Leila Anderson
+thinks — clinical/behavioral depth applied to product work, shown through case
+studies, tools, and writing. The audience is product and behavioral-health
+industry people, board/licensing contacts, conference organizers, and readers of
+her writing.
 
----
+> Client-facing clinical content (therapy, pricing, framework, legal notices)
+> lives on **arc-psychotherapy.com**, a separate project. It is not part of this
+> repo.
 
-## Description
+## Stack
 
-The website serves as a comprehensive digital brochure for Oleander Counseling & Consulting. It aims to connect with potential clients by addressing their pain points directly, outlining the services offered, providing professional background, and offering clear calls to action for consultation. The design prioritizes clarity, professionalism, and ease of navigation.
+Static HTML/CSS/vanilla JS, deployed via GitHub Pages (`CNAME` → `leilaanderson.dev`).
+No build step. Open `index.html` in a browser, or serve locally:
 
----
+```bash
+python3 -m http.server 8000
+# then open http://localhost:8000
+```
 
-## Features
+## Layout
 
-- **Engaging Welcome Section**  
-  Directly addresses client pain points and sets a compassionate, empowering tone.
+Single vertical-scroll page (`index.html`), in order:
 
-- **Detailed Services Overview**  
-  Clearly outlines therapy specializations (*spiritual trauma, grief, shame, addiction recovery*), clinical supervision, and consulting/speaking engagements. Includes fee information and out-of-network reimbursement details.
+1. **Routing banner** — dismissible one-liner pointing therapy-seekers to
+   arc-psychotherapy.com. Dismiss state is stored in `localStorage`.
+2. **Hero** — positioning statement + two case-study teasers.
+3. **Process** — the case studies (the core of the site).
+4. **Writing** — curated external links (Substack, LinkedIn).
+5. **Context** — brief professional background.
+6. **Contact** — email + LinkedIn for speaking/board/consulting/collaboration.
 
-- **Comprehensive About Me**  
-  Introduces Leila Anderson, LMFT-S, blending professional expertise with personal narrative. Includes a condensed professional journey and a link to download the full CV.
+## Key files
 
-- **Contact Form**  
-  A direct way for visitors to reach out for inquiries or to schedule a consultation.
+- `index.html` — all page content and structure.
+- `assets/css/site.css` — dark theme + scroll layout.
+- `assets/css/fair-pay-calculator.css` — styles for the embedded calculator.
+- `assets/js/content.js` — the editable `writing` array + small behaviors
+  (banner dismiss, footer year).
+- `assets/js/fair-pay-calculator.js` — the self-contained Fair Pay Calculator.
 
-- **Social Media Links**  
-  Provides connections to LinkedIn, Instagram, and direct email.
+## Adding a case study
 
-- **Responsive Design**  
-  Adapts to various screen sizes for optimal viewing on desktop, tablet, and mobile devices.
+Case studies are repeatable HTML blocks in `index.html`. To add one:
 
-- **SEO & Social Sharing Optimized**  
-  Includes detailed meta descriptions and Open Graph tags for better search engine visibility and appealing social media shares.
+1. Copy the `<article class="case">` block marked **CASE STUDY TEMPLATE**.
+2. Give it a unique `id` and matching `aria-labelledby`.
+3. Fill the four labeled parts, always in this order:
+   - `.case__open` — the open question / problem noticed
+   - `.case__pattern` — the pattern recognized (a short narrative)
+   - `.case__artifact` — what it became (the artifact + why it's built that way)
+   - `.case__demonstrates` — one line tying back to the thesis
+4. Optionally add a teaser to the hero `.teasers` row linking to the new `id`.
 
----
+## Adding a writing entry
 
-## Project Structure
+Edit the `writing` array in `assets/js/content.js` — add an object with
+`title`, `blurb`, `url`, and `source`. Newest first. No HTML changes needed.
 
-The website is built using standard HTML, CSS, and JavaScript.
+## Content still marked for final copy
 
-<pre><code>```text . ├── index.html ├── assets/ │ ├── css/ │ │ ├── main.css │ │ └── noscript.css │ └── js/ │ ├── jquery.min.js │ ├── browser.min.js │ ├── breakpoints.min.js │ ├── util.js │ └── main.js ├── images/ │ ├── banner.jpg │ ├── favicon.ico │ └── headshot.jpg └── assets/files/ └── Leila_Anderson_2025_CV.pdf ``` </code></pre>
-
-- `index.html`: The main entry point of the website, containing the structure and content.
-- `assets/css/main.css`: The primary stylesheet for the website's visual design.
-- `assets/css/noscript.css`: A stylesheet for browsers with JavaScript disabled.
-- `assets/js/*.js`: JavaScript files for interactive elements, smooth scrolling, and other functionalities. `main.js` is likely the custom script for the template's behavior.
-- `images/`: Directory for site images (banner, headshot, favicon).
-- `assets/files/Leila_Anderson_2025_CV.pdf`: The downloadable Curriculum Vitae.
-
----
-
-## Setup and Usage
-
-To view this website locally:
-
-1. Clone the repository (if applicable) or download the `index.html` file and the `assets` and `images` folders.
-2. Open `index.html` in your web browser.
-
-> The site is designed as a single-page application where navigation links smoothly scroll to different sections of the page.
-
----
+Search `index.html` and `content.js` for `COPY:` comments — these mark scaffolded
+placeholder text (positioning sentence, meta tags, professional context, Substack
+URL, writing entries) waiting on final copy.
 
 ## Credits
 
-**Dimension** by [HTML5 UP](https://html5up.net)  
-[html5up.net](https://html5up.net) | [@ajlkn](https://twitter.com/ajlkn)
-
----
-
-## License
-
-Free for personal and commercial use under the [CCA 3.0 license](https://html5up.net/license).
+Originally based on **Dimension** by [HTML5 UP](https://html5up.net) (CCA 3.0);
+rebuilt as a scrolling brand hub.

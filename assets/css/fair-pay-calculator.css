@@ -1,7 +1,6 @@
-.fair-pay-article {
-  width: min(72rem, calc(100vw - 3rem)) !important;
-  padding: 4.5rem 3rem 2.75rem 3rem !important;
-}
+/* .fair-pay-article width/padding rules removed: the calculator now flows
+   inside the normal scroll layout (see .case__embed in site.css), not a
+   fixed-width Dimension panel. */
 
 .calculator-intro {
   font-size: 1.1rem;
@@ -651,11 +650,6 @@ body.fpc-modal-open {
 }
 
 @media screen and (max-width: 736px) {
-  .fair-pay-article {
-    width: min(64rem, calc(100vw - 1.5rem)) !important;
-    padding: 3.5rem 1.35rem 1.5rem 1.35rem !important;
-  }
-
   .fpc-panel,
   .fair-pay-hero {
     padding: 1.15rem;

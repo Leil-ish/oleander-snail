@@ -25,23 +25,6 @@
     return;
   }
 
-  document.addEventListener("click", function (event) {
-    var calculatorArticle = document.getElementById("calculator");
-    var isCalculatorActive = calculatorArticle
-      && calculatorArticle.classList.contains("active")
-      && window.location.hash === "#calculator";
-
-    if (!isCalculatorActive) {
-      return;
-    }
-
-    if (calculatorArticle.contains(event.target)) {
-      return;
-    }
-
-    event.stopPropagation();
-  }, true);
-
   root.innerHTML = [
     '<div class="fpc-wrap">',
     '  <section class="fair-pay-card fpc-panel" aria-labelledby="fpc-inputs-heading">',
