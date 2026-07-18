@@ -10,23 +10,44 @@
    No HTML edits needed; the list re-renders from this array.
 ============================================================ */
 
-// COPY: confirm the Substack URL for "Mostly, Though".
-var SUBSTACK_URL = "https://mostlythough.substack.com";
+var SUBSTACK_URL = "https://leilaanderson.substack.com";
 var LINKEDIN_URL = "https://www.linkedin.com/in/leilaanderson/";
 
-// COPY: replace these scaffold entries with real pieces.
+// "Mostly, Though" on Substack. Newest first. Refresh by re-pulling
+// <SUBSTACK_URL>/feed and updating this list.
 var writing = [
   {
-    title: "Placeholder essay title",
-    blurb: "One line describing the piece and why it's worth the click.",
-    url: SUBSTACK_URL,
+    title: "The Authority Problem",
+    blurb:
+      "What therapists have, what clients consent to, and what neither court will say.",
+    url: "https://leilaanderson.substack.com/p/the-authority-problem",
     source: "Substack"
   },
   {
-    title: "Another placeholder piece",
-    blurb: "Short hook. Swap this out for a real post.",
-    url: LINKEDIN_URL,
-    source: "LinkedIn"
+    title: "The Clients I Don't Quite Remember",
+    blurb:
+      "On memory, grief, and the ethical tenderness of time-bounded relationships.",
+    url: "https://leilaanderson.substack.com/p/the-clients-i-dont-quite-remember",
+    source: "Substack"
+  },
+  {
+    title: "The Adjacent Possible",
+    blurb: "On the gap between what's possible and what's actually next.",
+    url: "https://leilaanderson.substack.com/p/the-adjacent-possible",
+    source: "Substack"
+  },
+  {
+    title: "Low",
+    blurb: "On Apple Health, bargaining, and the cost of arguing with a number.",
+    url: "https://leilaanderson.substack.com/p/low",
+    source: "Substack"
+  },
+  {
+    title: "How to Do Things with Therapy",
+    blurb:
+      "And why it matters that your therapist is doing them to you.",
+    url: "https://leilaanderson.substack.com/p/how-to-do-things-with-therapy",
+    source: "Substack"
   }
 ];
 
